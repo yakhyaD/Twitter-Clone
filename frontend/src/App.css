@@ -1,0 +1,36 @@
+.body-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  order: -1;
+  flex-wrap: wrap;
+}
+.main {
+  width: 700px;
+  display: flex;
+  justify-content: space-between;
+}
+.sidebar {
+  width: 500px;
+}
+.middle-section {
+  max-width: 600px;
+  min-height: 100vh;
+}
+
+.ms-width {
+  width: 100%;
+}
+
+.right-section {
+  width: 350px;
+  margin-right: 10px;
+  min-height: 1000px;
+  height: 100%;
+}

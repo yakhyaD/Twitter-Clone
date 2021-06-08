@@ -1,0 +1,185 @@
+.Tweet_card_wrapper {
+  border-bottom: 1px solid rgb(230, 236, 240);
+  display: flex;
+  transition: 0.2s ease-in-out;
+  will-change: background-color;
+  cursor: pointer;
+  padding: 10px 15px;
+  width: 100%;
+  flex-direction: column;
+}
+
+.Tweet_card_wrapper:hover {
+  background-color: rgb(245, 248, 250);
+}
+.is_reply {
+  font-size: 15px;
+  font-weight: 700;
+  padding-bottom: 10px;
+  margin-left: 10%;
+  opacity: 0.8;
+}
+.Tweet_card {
+  border-bottom: 1px solid rgb(230, 236, 240);
+  display: flex;
+  transition: 0.2s ease-in-out;
+  will-change: background-color;
+  cursor: pointer;
+}
+.card_user_ProfileImage {
+  flex-basis: 49px;
+  margin-right: 10px;
+  justify-content: center;
+}
+
+.card_content_wrapper {
+  flex-basis: calc(100% - 49px);
+}
+
+.card_content_header {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+.card_header_details {
+  display: flex;
+  justify-content: space-between;
+}
+.card_header_details_right {
+  margin-right: 15px;
+}
+
+.card_header_user:hover {
+  text-decoration: underline;
+}
+
+.card_header_date:hover {
+  text-decoration: underline;
+}
+
+.card_header_user {
+  font-weight: bold;
+}
+
+.card_header_username {
+  margin-left: 3px;
+  color: rgb(101, 119, 134);
+}
+
+.card_header_dot {
+  padding: 0 5px;
+  color: rgb(101, 119, 134);
+}
+
+.card_header_date {
+  color: rgb(101, 119, 134);
+}
+
+.card_content_infos {
+  margin-bottom: 10px;
+}
+
+/*.card_header_more {}*/
+
+.card_content_images {
+  margin-top: 10px;
+  border: 1px solid rgb(204, 214, 221);
+  border-radius: 14px;
+
+  /*// display: flex;
+    // flex-direction: column;*/
+}
+.card_image_link {
+  cursor: pointer;
+  display: block;
+  max-height: 253px;
+  border-radius: 14px;
+}
+
+.card_image_link img {
+  max-height: 253px;
+  border-radius: 14px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card_buttons_wrapper {
+  margin-top: 5px;
+  max-width: 425px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: -5px;
+  padding: 8px 0;
+}
+
+.card_button_wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: rgb(134, 120, 101);
+}
+
+.card_button_wrap .reply_icon {
+  color: rgb(212, 11, 11) !important;
+}
+
+.card_button_wrap .reply_icon :hover {
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+.card_button_wrap .reply_icon:hover svg {
+  fill: rgb(29, 161, 242) !important;
+}
+
+.card_button_wrap .retweet_icon :hover {
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+.card_button_wrap .retweet_icon:hover svg {
+  fill: rgb(23, 191, 99) !important;
+}
+
+.card_button_wrap .heart_icon :hover {
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+.card_button_wrap .heart_icon:hover svg {
+  fill: rgb(224, 36, 94) !important;
+}
+
+.card_button_wrap .share_icon :hover {
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+.card_button_wrap .share_icon:hover svg {
+  fill: rgb(29, 161, 242) !important;
+}
+
+.reply_wrap:hover {
+  color: rgb(29, 161, 242);
+}
+
+.retweet_wrap:hover {
+  color: rgb(23, 191, 99);
+}
+
+.heart_wrap:hover {
+  color: rgb(224, 36, 94);
+}
+
+.card_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7.4px;
+  border-radius: 50%;
+  transition: 0.2s ease-in-out;
+  will-change: background-color;
+}
+
+.card_icon_value {
+  margin-left: 3px;
+  font-size: 13px;
+}

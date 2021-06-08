@@ -1,0 +1,144 @@
+.list-wrapper {
+  max-width: 600px;
+  border-right: 1px solid rgb(230, 236, 240);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: rgb(230, 236, 240);
+}
+.list-header-wrapper {
+  position: sticky;
+  border: 1px solid rgb(230, 236, 240);
+  z-index: 3;
+  top: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  max-width: 1000px;
+  width: 100%;
+  background: #fff;
+}
+.list-header-left {
+  display: flex;
+  align-items: center;
+}
+.header-back-wrapper {
+  margin: 8px 0;
+}
+.list-header-text {
+  margin-left: 15px;
+}
+.list-header-title {
+  font-size: 22px;
+  font-weight: 800;
+}
+.list-header-name {
+  font-size: 15px;
+}
+.list-header-right {
+  display: flex;
+  justify-content: space-between;
+}
+.list-header-add {
+  padding: 0 8px;
+}
+.list-header-add svg {
+  fill: rgb(29, 161, 242);
+  cursor: pointer;
+}
+.list-header-more {
+  padding: 0 8px;
+}
+.list-header-more svg {
+  fill: rgb(29, 161, 242);
+  cursor: pointer;
+}
+.list-banner-wrapper {
+  max-width: 600px;
+  min-height: 200px;
+  position: relative;
+}
+.list-banner-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.list-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid rgb(230, 236, 240);
+  padding: 20px;
+}
+.list-info-title {
+  font-size: 28px;
+  font-weight: 800;
+}
+.list-info-description {
+  font-size: 18px;
+  text-align: center;
+  font-weight: 400;
+  padding: 15px 0;
+}
+.list-info-author {
+  font-size: 18px;
+  font-weight: 400;
+  padding-bottom: 15px;
+}
+.list-info-author a {
+  font-weight: bold;
+  margin-right: 10px;
+}
+.list-info-author a:hover {
+  text-decoration: underline;
+}
+.list-info-member {
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+.list-info-member span {
+  padding: 0 20px;
+}
+.list-info-button {
+  min-height: 39px;
+  min-width: 78px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  border: 1px solid rgb(29, 161, 242);
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.list-info-button span {
+  font-weight: 800;
+  color: rgb(29, 161, 242);
+  width: 100%;
+}
+.list-info-button-active {
+  min-height: 39px;
+  min-width: 78px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  border: 1px solid rgb(29, 161, 242);
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  background-color: rgb(29, 161, 242) !important;
+  color: #fff !important;
+}
+.list-tweets-wrapper {
+  background-color: #fff;
+  min-height: 600px;
+}
