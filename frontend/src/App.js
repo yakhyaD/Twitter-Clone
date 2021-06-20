@@ -26,6 +26,8 @@ import {
 } from "react-router-dom";
 import store from "./redux/store";
 import Booksmarks from "./components/Booksmarks/Booksmarks";
+import Conversations from "./components/Messages/Conversations/Conversations";
+import ActiveConversation from "./components/Messages/ActiveConversation/ActiveConversation";
 
 //const Home = lazy(() => import('./components/Home/Home'))
 
@@ -64,11 +66,13 @@ function App() {
               <Route exact path="/:username/lists" component={ListPage} />
               <Route exact path="/list/:listId" component={ListDetails} />
               <Route path="/bookmarks" component={Booksmarks} />
+              <Route path="/messages" component={Conversations} />
               <Route path="*" component={Home} />
             </Switch>
           </div>
           <div className="sidebar">
-            <Feed />
+            <Route path="/home" component={Feed} />
+            <Route path="/messages" component={ActiveConversation} />
           </div>
         </div>
       </Router>

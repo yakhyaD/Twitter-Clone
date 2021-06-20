@@ -12,12 +12,13 @@
   flex-wrap: wrap;
 }
 .main {
-  width: 700px;
+  max-width: 500px;
   display: flex;
   justify-content: space-between;
+  border-right: 1px solid rgb(230, 236, 240);
 }
 .sidebar {
-  width: 500px;
+  min-width: 600px;
 }
 .middle-section {
   max-width: 600px;
