@@ -1,7 +1,7 @@
 .Home_wrapper {
-  max-width: 800px;
   border-right: 1px solid rgb(230, 236, 240);
-  width: 100%;
+  max-width: 700px;
+  width: 600px;
   height: 100vh;
   display: flex;
   flex-direction: column;

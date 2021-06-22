@@ -1,5 +1,6 @@
 .feed-wrapper {
-  width: 100%;
+  max-width: 600px;
+  width: 600px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -43,7 +44,7 @@
 .search-icon {
   position: absolute;
   left: 5%;
-  top: 5%;
+  top: 30%;
   padding: 0 10px;
 }
 .search-results {
