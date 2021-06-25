@@ -62,10 +62,7 @@ const Feed = () => {
       <div className="search-bar-section">
         <div className="search-input">
           <div>
-            <div
-              className="search-icon"
-              style={{ top: openSearchBar ? "0 !important" : "15%" }}
-            >
+            <div className={openSearchBar ? "search-icon-open" : "search-icon"}>
               <ICON_SEARCH styles={{ width: "26.25px", height: "26.25px" }} />
             </div>
             <input type="text" placeholder="Search" onChange={handleSearch} />

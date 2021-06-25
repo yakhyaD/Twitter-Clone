@@ -2,27 +2,24 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  width: 100%;
 }
 
 .header {
   display: flex;
   position: relative;
+  justify-content: flex-end;
+  order: -1;
+  flex-wrap: wrap;
+  max-width: 300px;
 }
 .main {
-  max-width: 800px;
+  max-width: 900px;
   display: flex;
   justify-content: space-between;
-  border-right: 1px solid rgb(230, 236, 240);
 }
 .sidebar {
   max-width: 600px;
+  min-height: 1000px;
+  height: 100%;
 }
-
-/* @media only screen and (max-width: 600px) {
-  .main {
-    max-width: 400px;
-  }
-  .sidebar {
-    display: none;
-  }
-} */

@@ -28,7 +28,7 @@ const ActiveConversation = () => {
     };
     return (
       <>
-        <div className="header">
+        <div className="messages-header">
           <div className="left-side">
             <div className="profile">
               <a href="/">

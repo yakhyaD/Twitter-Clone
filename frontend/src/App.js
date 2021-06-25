@@ -47,33 +47,40 @@ function App() {
     <div>
       <Router>
         <div className="body-wrap">
-          <header className="header">
-            <Navbar />
-          </header>
-          <div className="main">
-            <Switch>
-              <Redirect exact path="/" to="/home" />
-              <Route exact path="/home" component={Home} />
+          {token ? (
+            <>
+              <div className="header">
+                <Navbar />
+              </div>
+              <div className="main">
+                <Switch>
+                  <Redirect exact path="/" to="/home" />
+                  <Route exact path="/home" component={Home} />
+                  <Route exact path="/profile/:username" component={Profile} />
+                  <Route
+                    exact
+                    path="/tweet/:username/:tweetId"
+                    component={TweetPage}
+                  />
+                  <Route exact path="/:username/lists" component={ListPage} />
+                  <Route exact path="/:username/lists" component={ListPage} />
+                  <Route exact path="/list/:listId" component={ListDetails} />
+                  <AuthRoute path="/bookmarks" component={Booksmarks} />
+                  <Route path="/messages" component={Conversations} />
+                  <Route path="*" component={Home} />
+                </Switch>
+              </div>
+              <div className="sidebar">
+                <Route path="/home" component={Feed} />
+                <Route path="/messages" component={ActiveConversation} />
+              </div>
+            </>
+          ) : (
+            <>
               <AuthRoute exact path="/login" component={Login} />
               <AuthRoute exact path="/signup" component={Signup} />
-              <Route exact path="/profile/:username" component={Profile} />
-              <Route
-                exact
-                path="/tweet/:username/:tweetId"
-                component={TweetPage}
-              />
-              <Route exact path="/:username/lists" component={ListPage} />
-              <Route exact path="/:username/lists" component={ListPage} />
-              <Route exact path="/list/:listId" component={ListDetails} />
-              <Route path="/bookmarks" component={Booksmarks} />
-              <Route path="/messages" component={Conversations} />
-              <Route path="*" component={Home} />
-            </Switch>
-          </div>
-          <div className="sidebar">
-            <Route path="/home" component={Feed} />
-            <Route path="/messages" component={ActiveConversation} />
-          </div>
+            </>
+          )}
         </div>
       </Router>
     </div>

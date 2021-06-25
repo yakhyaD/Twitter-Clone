@@ -1,31 +1,12 @@
 .messages-wrapper {
   max-width: 600px;
   width: 600px;
-  border: 1px solid rgb(230, 236, 240);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgb(230, 236, 240);
 }
-@media only screen and (max-width: 600px) {
-  .messages-wrapper {
-    max-width: 300px;
-    width: 300px;
-    border: 1px solid rgb(230, 236, 240);
-  }
-  .newMessage-btn {
-    width: 250px;
-    margin: 0 auto;
-    margin-top: 15px;
-    background-color: rgb(29, 161, 242);
-    color: #fff;
-    padding: 10px;
-    border-radius: 20px;
-    font-size: 18px;
-    font-weight: 600;
-    transition: 0.25s all;
-  }
-  .newMessage-btn:hover {
-    cursor: pointer;
-    background-color: rgb(29, 161, 242, 0.9);
-  }
-}
+
 .none-selected {
   margin-top: 50%;
   text-align: center;
@@ -34,33 +15,21 @@
   font-size: 18px;
   padding: 10px 0;
 }
-.newMessage-btn {
-  width: 25%;
-  margin: 0 auto;
-  margin-top: 15px;
-  background-color: rgb(29, 161, 242);
-  color: #fff;
-  padding: 10px;
-  border-radius: 20px;
-  font-size: 18px;
-  font-weight: 600;
-  transition: 0.25s all;
-}
-.newMessage-btn:hover {
-  cursor: pointer;
-  background-color: rgb(29, 161, 242, 0.9);
-}
-.header {
+
+.messages-header {
+  width: 100%;
   position: sticky;
   top: 0%;
-  width: 100%;
-  display: flex;
   z-index: 3;
+  display: flex;
+  justify-content: space-between;
   padding: 15px 10px;
   background-color: #fff;
   border-bottom: 1px solid rgb(230, 236, 240);
-  justify-content: space-between;
   margin-bottom: 15px;
+}
+.left-side {
+  display: flex;
 }
 .profile {
   flex-basis: 49px;
@@ -87,7 +56,7 @@
 .chat-block {
   display: flex;
   flex-direction: column;
-  height: 800px;
+  height: 100%;
   width: 100%;
   background-color: #fff;
 }
