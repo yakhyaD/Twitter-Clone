@@ -1,56 +1,71 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const tweetSchema = new Schema({
+const tweetSchema = new Schema(
+  {
     body: {
-        type: String,
-        required: false,
-        default: ""
+      type: String,
+      required: false,
+      default: "",
     },
     image: {
-        type: Array,
-        default: []
+      type: Array,
+      default: [],
     },
-    likes: [{
+    likes: [
+      {
         type: Schema.Types.ObjectId,
-        ref: 'User'
-    }],
+        ref: "User",
+      },
+    ],
     parent: {
-        type: Schema.Types.ObjectId,
-        ref: 'Tweet'
+      type: Schema.Types.ObjectId,
+      ref: "Tweet",
     },
-    tweets: [{
+    tweets: [
+      {
         type: Schema.Types.ObjectId,
-        ref: 'Tweet'
-    }],
-    replies: [{
+        ref: "Tweet",
+      },
+    ],
+    replies: [
+      {
         type: Schema.Types.ObjectId,
-        ref: 'Tweet'
-    }],
-    retweets: [{
+        ref: "Tweet",
+      },
+    ],
+    retweets: [
+      {
         type: Schema.Types.ObjectId,
-        ref: 'Tweet'
-    }],
+        ref: "Tweet",
+      },
+    ],
     user: {
-        required: true,
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+      required: true,
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
     thread: {
-        type: Array,
-        default: []
+      type: Array,
+      default: [],
     },
     username: {
-        type: String
+      type: String,
     },
     name: {
-        type: String
+      type: String,
     },
     retweet: {
-        type: Schema.Types.ObjectId,
-        ref: 'Tweet'
-    }
-}, {timestamp: true})
+      type: Schema.Types.ObjectId,
+      ref: "Tweet",
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+  },
+  { timestamp: true }
+);
 
-const Tweet = mongoose.model('Tweet', tweetSchema)
-module.exports = Tweet
+const Tweet = mongoose.model("Tweet", tweetSchema);
+module.exports = Tweet;

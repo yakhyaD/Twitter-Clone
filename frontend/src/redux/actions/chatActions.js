@@ -3,6 +3,7 @@ import {
   LOADING_CONVERSATION,
   SET_CONVERSATIONS,
   GET_CONVERSATION,
+  SEND_MESSAGE,
 } from "../type";
 import { API_URL } from "../../config";
 
@@ -18,4 +19,7 @@ export const getConversations = () => async (dispatch) => {
 };
 export const getConversation = (conversation) => (dispatch) => {
   dispatch({ type: GET_CONVERSATION, payload: conversation });
+};
+export const sendMessage = (message) => (dispatch) => {
+  dispatch({ type: SEND_MESSAGE, payload: message });
 };

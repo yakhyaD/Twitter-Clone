@@ -27,9 +27,12 @@
   display: flex;
   margin-right: 10px;
 }
-.icon {
+.header-icons .icon {
   padding: 0 8px;
   fill: rgb(29, 192, 242);
+}
+.header-icons .icon:hover {
+  cursor: pointer;
 }
 .chat-requests {
   width: 100%;

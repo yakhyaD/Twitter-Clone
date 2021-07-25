@@ -61,11 +61,13 @@ const dataReducer = (state = initialState, action) => {
           ...state.tweet,
           ...newTweet,
         },
+        loading: false,
       };
     case ADD_TWEET:
       return {
         ...state,
         tweets: [action.payload, ...state.tweets],
+        loading: false,
       };
     case COMMENT_TWEET:
       state.tweets.unshift(action.payload.tweet);
@@ -84,6 +86,7 @@ const dataReducer = (state = initialState, action) => {
 
       return {
         ...state,
+        loading: false,
       };
     case SET_LISTS:
       return {
@@ -115,6 +118,7 @@ const dataReducer = (state = initialState, action) => {
           ...state.list,
           ...newList,
         },
+        loading: false,
       };
     default:
       return state;

@@ -3,6 +3,8 @@
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .header {
@@ -11,15 +13,14 @@
   justify-content: flex-end;
   order: -1;
   flex-wrap: wrap;
-  max-width: 300px;
 }
 .main {
-  max-width: 900px;
+  max-width: 700px;
   display: flex;
   justify-content: space-between;
 }
 .sidebar {
   max-width: 600px;
-  min-height: 1000px;
   height: 100%;
+  margin-right: 10px;
 }

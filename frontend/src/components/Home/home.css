@@ -1,12 +1,22 @@
 .Home_wrapper {
   border-right: 1px solid rgb(230, 236, 240);
-  max-width: 600px;
-  width: 100%;
+  max-width: 700px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;
   margin: 0 auto;
+}
+@media only screen and (max-width: 720px) {
+  .Home_wrapper {
+    border-right: 1px solid rgb(230, 236, 240);
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0 auto;
+  }
 }
 .Home_header_wrapper {
   position: sticky;

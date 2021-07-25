@@ -132,7 +132,7 @@ router.get("/", async (req, res) => {
   try {
     let tweets = await Tweet.find()
       .populate("user", "username name profileImg createdAt")
-      .sort({ _id: -1 })
+      .sort({ createdAt: -1 })
       .populate({
         path: "parent",
         populate: { path: "user", select: "username profileImage name" },

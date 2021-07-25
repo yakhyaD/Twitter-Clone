@@ -1,6 +1,5 @@
 .messages-wrapper {
   max-width: 600px;
-  width: 600px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,10 +9,23 @@
 .none-selected {
   margin-top: 50%;
   text-align: center;
+  padding: 0 20px;
 }
 .none-selected h2 {
   font-size: 18px;
   padding: 10px 0;
+}
+.none-selected .newMessage-btn {
+  width: 30%;
+  margin: 20px auto;
+  background-color: rgb(29, 192, 242);
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+.none-selected .newMessage-btn:hover {
+  cursor: pointer;
+  background-color: rgb(29, 192, 242, 0.6);
 }
 
 .messages-header {
@@ -59,6 +71,8 @@
   height: 100%;
   width: 100%;
   background-color: #fff;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .message-block {
   display: flex;
@@ -134,4 +148,8 @@
 .btn-send {
   margin-left: 15px;
   fill: rgb(29, 161, 242);
+}
+.btn-send:hover {
+  cursor: pointer;
+  fill: rgb(29, 161, 242, 0.8);
 }

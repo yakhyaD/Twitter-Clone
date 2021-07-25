@@ -32,7 +32,9 @@ const TweetCard = ({ tweet }) => {
     if (!window.confirm("Do you want to delete this tweet ?")) {
       return;
     }
-    dispatch(deleteTweet(id));
+    setTimeout(() => {
+      dispatch(deleteTweet(id));
+    }, 500);
   };
   const addToBooksmarks = (id) => {
     dispatch(addBookmarks(id));
@@ -67,7 +69,7 @@ const TweetCard = ({ tweet }) => {
               {user?._id === tweet?.user?._id && (
                 <div
                   className="card_header_details_right"
-                  onClick={() => handleDelete(tweet._id)}
+                  onClick={() => handleDelete(tweet?._id)}
                 >
                   <ICON_DELETE
                     styles={{

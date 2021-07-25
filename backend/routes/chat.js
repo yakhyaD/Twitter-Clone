@@ -17,10 +17,10 @@ router.get(
         .populate({
           path: "conversations",
           select: "participants updatedAt",
-          options: { sort: { updateAt: -1 } },
+          options: { sort: { createdAt: -1 } },
           populate: {
             path: "messages",
-            select: "content sender",
+            select: "content sender _id createdAt",
             populate: {
               path: "sender",
               model: "User",
@@ -51,14 +51,16 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
-      const conversation = await User.findById(req.query.id).populate({
-        path: "messsages",
-        populate: {
-          path: "sender",
-          model: "User",
-          select: "username name profileImg",
-        },
-      });
+      const conversation = await User.findById(req.query.id)
+        .populate({
+          path: "messsages",
+          populate: {
+            path: "sender",
+            model: "User",
+            select: "username name profileImg",
+          },
+        })
+        .sort({ createdAt: "desc" });
       if (!conversation) {
         res
           .status(404)

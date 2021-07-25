@@ -143,3 +143,9 @@ export const searchTrend = (query) => async (dispatch) => {
     console.log(err);
   }
 };
+export const token = () => {
+  if (localStorage.getItem("FBIdToken")) {
+    return localStorage.getItem("FBIdToken");
+  }
+  return null;
+};

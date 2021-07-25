@@ -90,12 +90,10 @@ export const followList = (username, id, userId) => async (dispatch) => {
   }
 };
 export const deleteTweet = (id) => async (dispatch) => {
-  dispatch({ type: LOADING_DATA });
   try {
-    await axios.delete(`${API_URL}/tweet/${id}`);
     dispatch({ type: DELETE_TWEET, payload: id });
+    await axios.delete(`${API_URL}/tweet/${id}`);
   } catch (err) {
-    console.log(err);
     //dispatch({ type: SET_ERRORS, payload: err.response.data})
   }
 };
