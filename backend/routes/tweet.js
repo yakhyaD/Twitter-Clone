@@ -14,7 +14,7 @@ router.post(
       body: req.body.body,
       name: req.user.name,
       username: req.user.username,
-      images: req.body.images,
+      image: req.body.image,
       parent: req.body.parent ?? null,
       user: req.user._id,
     };

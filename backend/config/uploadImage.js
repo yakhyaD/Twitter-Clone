@@ -1,54 +1,42 @@
-/* const { projectStorage, projectFirestore } = require('./firebaseConfig')
+const { projectStorage } = require("./firebaseConfig");
 
+const imageTypes = ["image/png", "image/jpeg", "image/jpg"];
 
-const fileFilter = (file) => {
-  if(!(file.type === 'image/jpeg' || file.mimetype === 'image/png' || file.type === 'image/gif')){
-    return new Error ("File must be an image")
+const uploadImage = (req, res) => {
+  const storageRef = projectStorage.ref();
+
+  const { originalname, mimetype, buffer } = req.files[0];
+
+  if (!imageTypes.includes(mimetype)) {
+    return res.status(400).send("Invalid image type");
   }
-}
 
-const uploadImage = (file) => {
-    fileFilter(file)
-
-    const imageFileName = `${Math.round(Math.random() * 10000000)}.${file.type}`
-    const storageRef = projectStorage.ref(imageFileName)
-    const collectionRef = projectFirestore.collection('Twitter-Clone-images');
-
-    storageRef.put(file).on('state_changed', (snap) => {
-
-    }, (err) => {
-      throw new Error (err)
-    }, async () => {
-        url = await storageRef.getDownloadURL();
-        const createdAt = timestamp();
-        await collectionRef.add({ url, createdAt });
-
-    })
-    return url
-
-} */
-const util = require("util");
-const multer = require("multer");
-const GridFsStorage = require("multer-gridfs-storage");
-
-var storage = new GridFsStorage({
-  url: process.env.DB_AUTH,
-  options: { useNewUrlParser: true, useUnifiedTopology: true },
-  file: (req, file) => {
-    const match = ["image/png", "image/jpeg"];
-
-    if (match.indexOf(file.mimetype) === -1) {
-      const filename = `${Date.now()}-twitter-clone-${file.originalname}`;
-      return filename;
-    }
-
-    return {
-      bucketName: "tweet-image",
-      filename: `${Date.now()}-twitter-clone-${file.originalname}`
+  try {
+    // Upload file and metadata to the object 'images/mountains.jpg'
+    const metadata = {
+      contentType: mimetype,
     };
-  }
-});
+    const uploadTask = storageRef
+      .child(`twitter-clone/${req.user.username}/` + originalname)
+      .put(buffer, metadata);
 
-var uploadFile = multer({ storage: storage }).single("file");
-var uploadFilesMiddleware = util.promisify(uploadFile);
-module.exports = uploadFilesMiddleware;
+    // Listen for state changes, errors, and completion of the upload.
+    uploadTask.on(
+      "state_changed", // or 'state_changed'
+      (snapshot) => {},
+      (error) => {
+        return res.status(500).json({ error: error });
+      },
+      () => {
+        // Upload completed successfully, now we can get the download URL
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+          return res.status(200).json({ url: downloadURL });
+        });
+      }
+    );
+  } catch (error) {
+    return res.status(500).json({ error: error });
+  }
+};
+
+module.exports = { uploadImage };

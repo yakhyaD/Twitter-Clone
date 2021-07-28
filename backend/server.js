@@ -16,14 +16,16 @@ DBconnect();
 mongoose.set("useCreateIndex", true);
 
 const app = express();
+const upload = multer();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
   cors: { origin: "http://localhost:3000" },
 });
 
 app.use(cors());
+//app.use(upload.array());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 //routes handlers
@@ -34,34 +36,27 @@ const listRoutes = require("./routes/list");
 const trendRoutes = require("./routes/trend");
 const chatRoutes = require("./routes/chat");
 //const uploadFile = require('./routes/handleUpload')
-const upload = require("./config/uploadImage");
+const { uploadImage } = require("./config/uploadImage");
 
 //passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
 // routes
+
+app.post(
+  "/upload",
+  passport.authenticate("jwt", { session: false }),
+  multer().any(),
+  uploadImage
+);
+
 app.use("/auth", authRoutes);
 app.use("/tweet", tweetRoutes);
 app.use("/user", userRoutes);
 app.use("/list", listRoutes);
 app.use("/trend", trendRoutes);
 app.use("/chat", chatRoutes);
-// app.post('/upload', async (req, res) => {
-//   try {
-//     await upload(req, res);
-
-//     console.log(req.file);
-//     if (req.file == undefined) {
-//       return res.send(`You must select a file.`);
-//     }
-
-//     return res.send(`File has been uploaded.`);
-//   } catch (error) {
-//     console.log(error);
-//     return res.send(`Error when trying upload image: ${error}`);
-//   }
-// })
 
 const { Conversation } = require("./models/Chat");
 const { Message } = require("./models/Chat");
