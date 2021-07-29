@@ -84,7 +84,7 @@ const Conversations = () => {
         <div className="icon-arrowback">
           <ICON_ARROWBACK styles={{ width: "26.25px", height: "26.25px" }} />
         </div>
-        <div className="search-icon">
+        <div className="chat-search-icon">
           <ICON_SEARCH styles={{ width: "26.25px", height: "26.25px" }} />
         </div>
         <input
@@ -94,9 +94,13 @@ const Conversations = () => {
         />
       </div>
       <div className="chat-list">
-        {!loading
-          ? conversations?.map((conversation) => cardMarkup(conversation))
-          : "Loading..."}
+        {loading ? (
+          "Loading..."
+        ) : conversations.length ? (
+          conversations?.map((conversation) => cardMarkup(conversation))
+        ) : (
+          <h3>There is no conversations</h3>
+        )}
       </div>
     </div>
   );

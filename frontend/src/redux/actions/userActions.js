@@ -88,7 +88,6 @@ export const followUser = (id) => async (dispatch) => {
 export const updateUserDetails = (username, userData) => async (dispatch) => {
   dispatch({ type: LOADING_UI });
   try {
-    console.log(userData);
     const res = await axios.put(`${API_URL}/user/${username}`, userData);
     dispatch({ type: UPDATE_PROFILE, payload: res.msg, data: userData });
     dispatch({ type: CLEAR_ERRORS });

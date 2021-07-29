@@ -39,29 +39,35 @@ const dataReducer = (state = initialState, action) => {
         loading: false,
       };
     case LIKE_TWEET:
-    case UNLIKE_TWEET:
-      let newTweet;
-      let tweetIndex = state.tweets.findIndex(
-        (tweet) => tweet._id === action.data
-      );
-
-      if (action.payload.msg === "Tweet Liked") {
-        state.tweets[tweetIndex].likes.unshift(action.data);
-      } else if (action.payload.msg === "Tweet Unliked") {
-        state.tweets[tweetIndex].likes = state.tweets[tweetIndex].likes.filter(
-          (tweet) => tweet._id !== action.data
+      if (state.tweets) {
+        let index = state.tweets.findIndex(
+          (tweet) => tweet._id === action.payload
         );
+        state.tweets[index].likes.unshift(action.payload);
       }
-      if (state.tweet && state.tweet._id === action.data) {
-        newTweet = state.tweets[tweetIndex];
+      if (state.tweet && state.tweet._id === action.payload) {
+        state.tweet.likes.unshift(action.payload);
       }
       return {
         ...state,
-        tweet: {
-          ...state.tweet,
-          ...newTweet,
-        },
-        loading: false,
+      };
+    case UNLIKE_TWEET:
+      if (state.tweets) {
+        let index1 = state.tweets.findIndex(
+          (tweet) => tweet._id === action.payload
+        );
+        state.tweets[index1].likes = state.tweets[index1].likes.filter(
+          (like) => like !== action.payload
+        );
+      }
+
+      if (state.tweet && state.tweet._id === action.payload) {
+        state.tweet.likes = state.tweet.likes.filter(
+          (like) => like !== action.payload
+        );
+      }
+      return {
+        ...state,
       };
     case ADD_TWEET:
       return {

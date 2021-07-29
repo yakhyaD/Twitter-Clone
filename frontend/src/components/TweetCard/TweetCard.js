@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import React, { useState } from "react";
 import {
   ICON_DELETE,
@@ -15,6 +17,7 @@ import CommentSection from "../../utils/CommentSection";
 import { deleteTweet, addBookmarks } from "../../redux/actions/dataActions";
 
 const TweetCard = ({ tweet }) => {
+  dayjs.extend(relativeTime);
   const authenticated = useSelector((state) => state.user.authenticated);
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
@@ -45,39 +48,35 @@ const TweetCard = ({ tweet }) => {
         <p className="is_reply">Reply to @{tweet.parent.username}</p>
       )}
       <div className="Tweet_card">
-        <div className="card_user_ProfileImage">
-          <a href={`/profile/${tweet?.user.username}`}>
-            <img
-              style={{ borderRadius: "50%", minWidth: "49px" }}
-              width="100%"
-              height="49px"
-              src={tweet?.user.profileImg}
-              alt="profileImage"
-            />
-          </a>
-        </div>
         <div className="card_content_wrapper">
           <div className="card_content_header">
+            <div className="card_user_ProfileImage">
+              <a href={`/profile/${tweet?.user.username}`}>
+                <img
+                  style={{ borderRadius: "50%", minWidth: "49px" }}
+                  width="100%"
+                  height="49px"
+                  src={tweet?.user.profileImg ?? tweet?.user.profileImage}
+                  alt="profileImage"
+                />
+              </a>
+            </div>
             <div className="card_header_details">
               <div className="card_header_deltails_left">
                 <span className="card_header_user">{tweet?.user.name}</span>
                 <span className="card_header_username">
                   @{tweet?.user.username}
                 </span>
-                <span className="card_header_date">1h</span>
+                <span className="card_header_date">
+                  {dayjs(tweet?.createdAt).fromNow()}
+                </span>
               </div>
               {user?._id === tweet?.user?._id && (
                 <div
                   className="card_header_details_right"
                   onClick={() => handleDelete(tweet?._id)}
                 >
-                  <ICON_DELETE
-                    styles={{
-                      fill: "rgb((29, 161, 242)",
-                      width: "20px",
-                      height: "20px",
-                    }}
-                  />
+                  <ICON_DELETE />
                 </div>
               )}
             </div>
@@ -91,13 +90,14 @@ const TweetCard = ({ tweet }) => {
           >
             {tweet?.body}
           </div>
-          {tweet?.image.length > 0 ? (
-            <div className="card_content_image">
-              <div className="card_image_link">
-                <img src="https://i.imgur.com/vYQYRmp.jpg" alt="imageContent" />
-              </div>
-            </div>
-          ) : null}
+          <div className="card_content_image">
+            {tweet?.image.length > 0 &&
+              tweet.image.map((image) => (
+                <div key={image} className="card_image_link">
+                  <img src={image} alt="imageContent" />
+                </div>
+              ))}
+          </div>
           <div className="card_buttons_wrapper">
             <div className="card_button_wrap reply_wrap">
               <div className="card_icon reply_icon" onClick={toggleModal}>

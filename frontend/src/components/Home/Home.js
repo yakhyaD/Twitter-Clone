@@ -23,7 +23,6 @@ const Home = () => {
   }, [dispatch]);
 
   const handleChange = (e) => {
-    e.preventDefault();
     setTweetBody(e.target.value);
   };
   const handleSubmit = () => {

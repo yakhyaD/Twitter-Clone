@@ -6,6 +6,8 @@
   border: 1px solid rgb(230, 236, 240);
   position: relative;
   margin-bottom: 20px;
+  overflow-y: auto;
+  width: 500px;
 }
 .search-bar-section {
   position: sticky;
@@ -30,7 +32,7 @@
   padding: 10px;
   border-radius: 20px;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   background-color: rgb(247, 249, 250);
 }
 .search-input input:focus {
@@ -41,7 +43,6 @@
 }
 .search-icon {
   position: absolute;
-  left: 5%;
   top: 30%;
   padding: 0 10px;
 }
@@ -59,6 +60,10 @@
   flex-direction: column;
   border-radius: 10px;
 }
+.trend-header h2 {
+  font-size: 15px;
+}
+
 .trend-results {
   display: flex;
   flex-direction: column;
@@ -66,7 +71,7 @@
   padding: 25px 10px;
 }
 .trend-results div {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   padding: 8px 0;
   border-bottom: 1px solid #fff;
@@ -93,11 +98,11 @@
 .trend-header {
   display: flex;
   justify-content: space-between;
-  padding: 15px 15px;
+  padding: 10px 15px;
   border-bottom: 3px solid #fff;
 }
 .trending-list {
-  padding: 10px 5px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
 }
@@ -111,17 +116,17 @@
   padding: 10px;
 }
 .list-item-card span {
-  font-size: 14px;
+  font-size: 12px;
   opacity: 0.6;
   margin-bottom: 8px;
 }
 .list-item-card h3 {
   padding: 5px 0;
-  font-size: 21px;
+  font-size: 17px;
   font-weight: 700;
 }
 .list-item-card p {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
 }
 .item-more-infos {
@@ -181,7 +186,7 @@
   border-radius: 15px;
   margin-right: 15px;
   color: rgb(29, 192, 242);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   cursor: pointer;
   transition: 0.5s all;

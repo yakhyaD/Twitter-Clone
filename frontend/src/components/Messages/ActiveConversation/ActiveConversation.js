@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { io } from "socket.io-client";
@@ -83,7 +83,7 @@ const ActiveConversation = () => {
     socket?.emit("subscribe", id);
     setRoom(id);
   };
-  const fillConversation = (params) => setChat(params);
+  //const startConversation = (params) => setChat(params);
 
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
@@ -97,7 +97,7 @@ const ActiveConversation = () => {
       <p>Choose one fro your existing messages, or start a new one.</p>
       <div
         className="newMessage-btn"
-        onClick={() => fillConversation(conversation)}
+        //onClick={() => startConversation(conversation)}
       >
         New Message
       </div>

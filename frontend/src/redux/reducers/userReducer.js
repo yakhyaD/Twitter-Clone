@@ -4,6 +4,7 @@ import {
   SET_USER,
   LOADING_USER,
   LIKE_TWEET,
+  UNLIKE_TWEET,
   SET_PROFILE,
   FOLLOW_USER,
   UPDATE_PROFILE,
@@ -64,14 +65,9 @@ const userReducer = (state = initialState, action) => {
       };
     case LIKE_TWEET:
       let newUser = state.user;
+      console.log(action.payload);
+      newUser.likes.push(action.payload);
 
-      if (action.payload.msg === "Tweet Liked") {
-        newUser.likes.unshift(action.data);
-      } else if (action.payload.msg === "Tweet Unliked") {
-        newUser.likes = state.user.likes.filter(
-          (tweet) => tweet._id !== action.data.id
-        );
-      }
       return {
         ...state,
         user: {
@@ -79,6 +75,19 @@ const userReducer = (state = initialState, action) => {
           ...newUser,
         },
       };
+    case UNLIKE_TWEET:
+      let newUser2 = state.user;
+      state.user.likes = newUser2.likes.filter(
+        (like) => like !== action.payload
+      );
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          ...newUser2,
+        },
+      };
+
     case SET_PROFILE:
       return {
         ...state,

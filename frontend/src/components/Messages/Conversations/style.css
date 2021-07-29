@@ -1,6 +1,6 @@
 .chat-wrapper {
-  max-width: 700px;
-  width: 600px;
+  max-width: 600px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -16,7 +16,7 @@
   z-index: 3;
   padding: 15px 10px;
   background-color: #fff;
-  border-bottom: 1px solid rgb(230, 236, 240);
+  border: 1px solid rgb(230, 236, 240);
   justify-content: space-between;
 }
 .header-title {
@@ -40,7 +40,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  border-bottom: 1px solid rgb(230, 236, 240);
+  border: 1px solid rgb(230, 236, 240);
 }
 .arrow {
   margin-right: 15px;
@@ -65,7 +65,7 @@
   align-items: center;
   padding: 15px 10px;
   background-color: #fff;
-  border-bottom: 1px solid rgb(230, 236, 240);
+  border: 1px solid rgb(230, 236, 240);
 }
 .search-input {
   width: 90%;
@@ -79,10 +79,10 @@
   outline: none;
   color: rgb(0, 0, 0, 0.8);
 }
-.search-icon {
+.chat-search-icon {
   position: absolute;
-  left: 8%;
   top: 30%;
+  left: 8%;
   margin-right: 20px;
   z-index: 2;
 }
@@ -91,6 +91,11 @@
   fill: rgb(29, 192, 242);
   cursor: pointer;
   display: none;
+}
+.chat-list h3 {
+  font-size: 18px;
+  text-align: center;
+  padding-top: 30px;
 }
 .list-item {
   display: flex;

@@ -11,6 +11,7 @@ import {
   FOLLOW_LIST,
   DELETE_TWEET,
   SET_BOOKMARKS,
+  UNLIKE_TWEET,
 } from "../type";
 
 import { API_URL } from "../../config";
@@ -36,10 +37,20 @@ export const getOneTweet = (id) => async (dispatch) => {
 };
 export const likeTweet = (id) => async (dispatch) => {
   try {
-    const res = await axios.post(`${API_URL}/tweet/${id}/like`);
-    dispatch({ type: LIKE_TWEET, payload: res.data, data: id });
+    await axios.post(`${API_URL}/tweet/${id}/like`);
+    dispatch({ type: LIKE_TWEET, payload: id });
   } catch (err) {
-    dispatch({ type: SET_ERRORS, payload: err.response.data });
+    console.log(err);
+    dispatch({ type: SET_ERRORS, payload: err });
+  }
+};
+export const unlikeTweet = (id) => async (dispatch) => {
+  try {
+    await axios.post(`${API_URL}/tweet/${id}/like`);
+    dispatch({ type: UNLIKE_TWEET, payload: id });
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: SET_ERRORS, payload: err });
   }
 };
 export const postTweet = (newTweet) => async (dispatch) => {

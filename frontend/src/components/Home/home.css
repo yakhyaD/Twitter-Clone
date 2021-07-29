@@ -1,11 +1,12 @@
 .Home_wrapper {
   border-right: 1px solid rgb(230, 236, 240);
-  max-width: 700px;
+  width: 600px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;
-  margin: 0 auto;
+  justify-content: flex-start;
+  overflow-y: auto;
 }
 @media only screen and (max-width: 720px) {
   .Home_wrapper {
@@ -179,131 +180,3 @@
     padding-top: 5px;
     margin-right: 20px;
 } */
-
-.card_user_ProfileImage {
-  width: 8%;
-  height: 49px;
-  margin-right: 20px;
-}
-
-.card_content_wrapper {
-  flex-basis: calc(100% - 49px);
-}
-
-.card_content_header {
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.card_header_user:hover {
-  text-decoration: underline;
-}
-
-.card_header_date:hover {
-  text-decoration: underline;
-}
-
-.card_header_user {
-  font-weight: bold;
-  padding: 0 5px;
-}
-
-.card_header_username {
-  margin-left: 3px;
-  color: rgb(101, 119, 134);
-}
-
-.card_header_dot {
-  padding: 0 5px;
-  color: rgb(101, 119, 134);
-}
-
-.card_header_date {
-  color: rgb(101, 119, 134);
-}
-
-.card_content_body {
-  margin: 12px 0;
-}
-.card_content_infos {
-  margin-bottom: 10px;
-  font-weight: 300;
-  font-size: 17px;
-}
-.inner_tweet_replie {
-  display: flex;
-  width: 100%;
-  padding-top: 30px;
-}
-.inner_replie_profile {
-  width: 8%;
-  height: 49px;
-  margin-right: 20px;
-}
-.replie_input_side {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-}
-.replie_input_box {
-  background-color: #fff;
-  padding: 10px 0;
-  min-height: 150px;
-  outline: none;
-}
-.replie_input_box div {
-  outline: none;
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 140px;
-  padding: 15px;
-  background-color: rgb(237, 242, 247);
-  cursor: auto;
-}
-.replie_input_box div[contenteditable="true"]:empty:before {
-  content: attr(placeholder);
-  display: block;
-  color: #aaa;
-}
-
-.reply_btn_side {
-  padding: 15px 4px;
-  margin-left: 72%;
-  min-height: 39px;
-  background-color: rgb(29, 161, 242);
-  padding: 0 1em;
-  border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 9999px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-weight: 700;
-  cursor: pointer;
-  opacity: 0.5;
-  width: 25%;
-  margin-top: 15px;
-}
-.replie_info {
-  font-size: 17px;
-  color: rgb(238, 70, 70);
-  font-weight: 500;
-  text-align: center;
-}
-.reply_btn_active {
-  opacity: 1;
-}
-.close_btn {
-  width: 100%;
-  display: flex;
-  justify-content: flex;
-  align-items: center;
-  padding-bottom: 15px;
-  border-bottom: 1px solid rgb(230, 236, 240);
-  margin-bottom: 10px;
-}
-.close_btn svg:hover {
-  cursor: pointer;
-  fill: rgb(29, 161, 242) !important;
-}

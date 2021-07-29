@@ -1,16 +1,15 @@
 .Tweet_card_wrapper {
-  border-bottom: 1px solid rgb(230, 236, 240);
   display: flex;
   transition: 0.2s ease-in-out;
   will-change: background-color;
   cursor: pointer;
-  padding: 10px 15px;
+  padding: 10px 20px;
   width: 100%;
   flex-direction: column;
 }
 
 .Tweet_card_wrapper:hover {
-  background-color: rgb(245, 248, 250);
+  background-color: rgb(245, 248, 250, 0.3);
 }
 .is_reply {
   font-size: 15px;
@@ -26,31 +25,42 @@
   will-change: background-color;
   cursor: pointer;
 }
-.card_user_ProfileImage {
-  flex-basis: 49px;
-  margin-right: 10px;
-  justify-content: center;
-}
 
 .card_content_wrapper {
   flex-basis: calc(100% - 49px);
+  padding: 5px;
 }
 
 .card_content_header {
-  margin-bottom: 8px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+.card_user_ProfileImage {
+  flex-basis: 49px;
+  justify-content: center;
+  width: 15%;
 }
 .card_header_details {
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
+  width: 80%;
+  margin-left: 10px;
 }
-.card_header_details_right {
-  margin-right: 15px;
+
+.card_header_details_right svg {
+  fill: rgb(29, 161, 242);
+  height: 16px;
+  width: 16px;
 }
 
 .card_header_user:hover {
   text-decoration: underline;
+}
+.card_header_date {
+  margin-left: 15px;
 }
 
 .card_header_date:hover {
@@ -77,6 +87,7 @@
 
 .card_content_infos {
   margin-bottom: 10px;
+  padding-left: 15%;
 }
 
 /*.card_header_more {}*/
@@ -85,15 +96,18 @@
   margin-top: 10px;
   border: 1px solid rgb(204, 214, 221);
   border-radius: 14px;
-
-  /*// display: flex;
-    // flex-direction: column;*/
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .card_image_link {
   cursor: pointer;
   display: block;
-  max-height: 253px;
+  max-height: 260px;
+  border: 1px solid rgb(0, 0, 0, 0.1);
   border-radius: 14px;
+  width: 100%;
 }
 
 .card_image_link img {

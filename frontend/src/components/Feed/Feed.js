@@ -20,7 +20,6 @@ const Feed = () => {
   const authenticated = useSelector((state) => state.user.authenticated);
   const userResults = useSelector((state) => state.user.searchUserResult);
   const trendResults = useSelector((state) => state.user.searchTrendResult);
-  const loading = useSelector((state) => state.user.loading);
   const [openSearchBar, setOpenSearchBar] = useState(false);
 
   const suggestionsFollowers = useSelector(
@@ -104,7 +103,7 @@ const Feed = () => {
       {!loadingTrend ? (
         <div className="trend-section">
           <div className="trend-header">
-            <h2>Trend for you</h2>
+            <h3>Trend for you</h3>
             <div className="more-icon">
               <ICON_SETTINGS styles={{ width: "26.25px", height: "26.25px" }} />
             </div>

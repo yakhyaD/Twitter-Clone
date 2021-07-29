@@ -28,7 +28,7 @@ router.post(
       if (req.body.parent) {
         parent = await Tweet.findById(req.body.parent).populate(
           "user",
-          "username name profileImage"
+          "username name profileImg"
         );
         parent.replies.unshift(tweet);
         parent.save();
@@ -135,12 +135,12 @@ router.get("/", async (req, res) => {
       .sort({ createdAt: -1 })
       .populate({
         path: "parent",
-        populate: { path: "user", select: "username profileImage name" },
+        populate: { path: "user", select: "username profileImg name" },
       })
       .populate({
         path: "retweet",
         model: "Tweet",
-        populate: { path: "user", select: "username profileImage   name" },
+        populate: { path: "user", select: "username profileImg   name" },
       })
       .populate({
         path: "parent",

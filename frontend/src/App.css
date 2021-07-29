@@ -1,7 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .body-wrap {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   width: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -9,18 +14,15 @@
 
 .header {
   display: flex;
-  position: relative;
-  justify-content: flex-end;
   order: -1;
-  flex-wrap: wrap;
 }
 .main {
-  max-width: 700px;
+  max-width: 800px;
   display: flex;
   justify-content: space-between;
 }
 .sidebar {
-  max-width: 600px;
+  display: flex;
   height: 100%;
   margin-right: 10px;
 }

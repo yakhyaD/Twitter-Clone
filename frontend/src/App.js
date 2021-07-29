@@ -72,6 +72,7 @@ function App() {
           </div>
           <div className="sidebar">
             <Route path="/home" component={Feed} />
+            <Route path="/tweet/:username/:tweetId" component={Feed} />
             <Route path="/messages" component={ActiveConversation} />
           </div>
         </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { ICON_HEART, ICON_HEARTFULL } from "./Icons";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { likeTweet } from "../redux/actions/dataActions";
+import { likeTweet, unlikeTweet } from "../redux/actions/dataActions";
 
 const LikeButton = ({ tweetId }) => {
   const user = useSelector((state) => state.user.user);
@@ -10,12 +10,13 @@ const LikeButton = ({ tweetId }) => {
   const dispatch = useDispatch();
 
   const favTweet = (id) => {
-    dispatch(likeTweet(id));
+    isLiked() ? dispatch(unlikeTweet(id)) : dispatch(likeTweet(id));
   };
   const isLiked = () => {
     if (user && user.likes.find((id) => id === tweetId)) {
       return true;
-    } else return false;
+    }
+    return false;
   };
 
   return (

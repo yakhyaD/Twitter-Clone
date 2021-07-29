@@ -1,5 +1,6 @@
 .Nav-width {
-  width: 300px;
+  max-width: 300px;
+  width: 260px;
   position: relative;
 }
 
