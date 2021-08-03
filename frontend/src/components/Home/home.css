@@ -7,17 +7,7 @@
   position: relative;
   justify-content: flex-start;
   overflow-y: auto;
-}
-@media only screen and (max-width: 720px) {
-  .Home_wrapper {
-    border-right: 1px solid rgb(230, 236, 240);
-    width: 300px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    margin: 0 auto;
-  }
+  overflow-x: hidden !important;
 }
 .Home_header_wrapper {
   position: sticky;
@@ -59,7 +49,7 @@
   padding: 10px;
 }
 .Tweet_input_wrapper {
-  padding: 10px 15px 5px 15px;
+  padding: 15px 15px 5px 15px;
   display: flex;
   margin-bottom: 5px;
   border-bottom: 1px solid rgb(169, 173, 175);
@@ -77,17 +67,45 @@
   justify-content: space-between;
   width: 100%;
 }
+.Tweet_media_wrapper {
+  display: flex;
+  justify-content: row;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.Tweet_media_wrapper .img-container {
+  background-color: #9197a3;
+  margin: 5px 8px;
+  border: 1px solid rgb(230, 236, 240);
+  border-radius: 10px;
+  padding: 3px;
+}
+.img-container .media {
+  max-width: 400px;
+  object-fit: cover;
+}
+.img-container .media-multiple {
+  height: 180px;
+  width: 180px;
+  object-fit: cover;
+}
+
 .inner_input_box {
   padding: 14px 0;
   font-size: 19px;
-  color: #9197a3;
-  position: relative;
+  color: #000;
   max-width: 400px;
   font-weight: normal;
-  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgb(230, 236, 240, .3);
 }
 
-.inner_input_box div {
+.tweet-input {
+  max-width: 400px;
   outline: none;
   min-height: 50px;
   padding: 8px;

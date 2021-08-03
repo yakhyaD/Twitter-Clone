@@ -1,11 +1,14 @@
-.tweet-wrapper {
-  max-width: 600px;
-  width: 500px;
+.wrapper {
   border-right: 1px solid rgb(230, 236, 240);
+  width: 580px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;
+  justify-content: flex-start;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 20px;
 }
 
 .tweet-header-wrapper {
@@ -168,6 +171,10 @@
 .reply-user-pic {
   flex-basis: 49px;
   margin-right: 10px;
+}
+
+.tweet-owner{
+  padding: 8px 0;
 }
 
 .reply-header-username {
@@ -564,6 +571,43 @@
 
 .reply_btn_active {
   opacity: 1;
+}
+
+.media-section {
+  display: flex;
+  justify-content: row;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  min-height: 100px;
+}
+
+.media-section .img-container {
+  background-color: #fff;
+  margin: 5px 8px;
+  border-radius: 10px;
+  padding: 3px;
+  max-width: 400px;
+}
+
+.img-container .media {
+  width: auto;
+  height: min-content;
+  object-fit: cover;
+  border: 1px solid #9197a3;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-container .media-multiple {
+  height: 180px;
+  width: 160px;
+  object-fit: cover;
+  margin: 8px;
+  border: 1px solid #9197a3;
+  border-radius: 15px;
 }
 
 .close_btn {

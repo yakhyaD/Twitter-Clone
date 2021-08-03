@@ -13,8 +13,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "./tweetCard.css";
 import "../Home/home.css";
 import LikeButton from "../../utils/likeButton";
-import CommentSection from "../../utils/CommentSection";
 import { deleteTweet, addBookmarks } from "../../redux/actions/dataActions";
+import CommentModal from "../CommentModal/CommentModal";
 
 const TweetCard = ({ tweet }) => {
   dayjs.extend(relativeTime);
@@ -147,7 +147,7 @@ const TweetCard = ({ tweet }) => {
         </div>
       </div>
       {authenticated && (
-        <CommentSection toggleModal={toggleModal} tweet={tweet} open={open} />
+        <CommentModal toggleModal={toggleModal} tweet={tweet} open={open} />
       )}
     </div>
   );

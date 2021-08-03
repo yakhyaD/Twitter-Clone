@@ -56,7 +56,7 @@ export const unlikeTweet = (id) => async (dispatch) => {
 export const postTweet = (newTweet) => async (dispatch) => {
   try {
     const res = await axios.post(`${API_URL}/tweet/create`, newTweet);
-    dispatch({ type: ADD_TWEET, payload: res.data.tweet });
+    dispatch({ type: ADD_TWEET, payload: res.tweet });
   } catch (error) {
     dispatch({ type: SET_ERRORS, payload: error.response.data });
   }
@@ -116,3 +116,12 @@ export const addBookmarks = (tweetId) => async (dispatch) => {
     console.log(err);
   }
 };
+
+export const uploadImage = (data) => async () => {
+  try {
+    const res = await axios.post(`${API_URL}/upload`, data);
+    return res.data.url;
+  } catch (err) {
+    throw new Error(err.response.data)
+  }
+}

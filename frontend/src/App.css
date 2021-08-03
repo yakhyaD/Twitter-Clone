@@ -4,12 +4,15 @@
   box-sizing: border-box;
 }
 
+
 .body-wrap {
   display: flex;
   flex-direction: row;
   width: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
+  justify-content: center;
+  height: 100vh;
 }
 
 .header {
@@ -26,3 +29,4 @@
   height: 100%;
   margin-right: 10px;
 }
+
