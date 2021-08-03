@@ -29,7 +29,9 @@ export const login = (userData, history) => async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
     history.push("/home");
   } catch (error) {
-    dispatch({ type: SET_ERRORS, payload: error.response.data });
+    // console.error(error)
+    // dispatch({ type: STOP_LOADER });
+    dispatch({ type: SET_ERRORS, payload: error.message });
   }
 };
 export const signup = (userData, history) => async (dispatch) => {

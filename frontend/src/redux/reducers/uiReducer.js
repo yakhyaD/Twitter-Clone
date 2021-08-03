@@ -1,8 +1,8 @@
-import { LOADING_UI, CLEAR_ERRORS, SET_ERRORS, SET_FLASH_MSG } from "../type";
+import { LOADING_UI, CLEAR_ERRORS, SET_ERRORS, SET_FLASH_MSG, STOP_LOADER } from "../type";
 
 const initialState = {
   loading: false,
-  errors: {},
+  errors: [],
   flash_msg: null,
 };
 const uiReducer = (state = initialState, action) => {
@@ -21,14 +21,19 @@ const uiReducer = (state = initialState, action) => {
     case SET_ERRORS:
       return {
         ...state,
+        errors: [...state.errors, action.payload],
         loading: false,
-        errors: action.payload,
       };
     case SET_FLASH_MSG:
       return {
         ...state,
         flash_msg: action.payload.msg,
       };
+    case STOP_LOADER:
+      return {
+        ...state,
+        loading: false,
+    };
     default:
       return state;
   }

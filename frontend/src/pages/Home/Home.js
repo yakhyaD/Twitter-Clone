@@ -4,11 +4,11 @@ import ContentEditable from "react-contenteditable";
 import { Link } from "react-router-dom";
 
 import { LOADING_GIF } from '../../config'
-import TweetCard from "../TweetCard/TweetCard";
-import { ICON_IMGUPLOAD, ICON_GIF, ICON_EMOJI } from "../../utils/Icons";
+import TweetCard from "../../components/TweetCard/TweetCard";
+import { ICON_IMGUPLOAD, ICON_GIF, ICON_EMOJI } from "../../helpers/Icons";
 import "./home.css";
 import { getAllTweets, postTweet, uploadImage } from "../../redux/actions/dataActions";
-import Loader from "../Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 
 
 const Home = () => {

@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react'
 
 // Import files
 import './list.css'
-import { ICON_ARROWBACK, ICON_LIST, ICON_SETTINGS } from '../../utils/Icons'
+import { ICON_ARROWBACK, ICON_LIST, ICON_SETTINGS } from '../../helpers/Icons'
 import Loader from '../Loader/Loader'
 
 //import modules

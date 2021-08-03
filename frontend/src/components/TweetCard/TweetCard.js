@@ -1,18 +1,13 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import React, { useState } from "react";
-import {
-  ICON_DELETE,
-  ICON_REPLY,
-  ICON_RETWEET,
-  ICON_SHARE,
-} from "../../utils/Icons";
+import { ICON_DELETE, ICON_REPLY, ICON_RETWEET, ICON_SHARE } from "../../helpers/Icons";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./tweetCard.css";
-import "../Home/home.css";
-import LikeButton from "../../utils/likeButton";
+import "../../pages/Home/home.css";
+import LikeButton from "../../helpers/likeButton";
 import { deleteTweet, addBookmarks } from "../../redux/actions/dataActions";
 import CommentModal from "../CommentModal/CommentModal";
 

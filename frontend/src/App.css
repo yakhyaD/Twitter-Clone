@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-
 .body-wrap {
   display: flex;
   flex-direction: row;
@@ -13,9 +12,11 @@
   overflow-y: hidden;
   justify-content: center;
   height: 100vh;
+  position: relative;
 }
 
 .header {
+  position: relative;
   display: flex;
   order: -1;
 }
@@ -23,10 +24,24 @@
   max-width: 800px;
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 .sidebar {
   display: flex;
   height: 100%;
   margin-right: 10px;
+  position: relative;
 }
 
+/* SPINNER*/
+.spinner {
+  border: 8px solid;
+  border-color: #3d5af1 transparent #3d5af1 transparent;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

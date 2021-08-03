@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getBookmarks } from "../../redux/actions/userActions";
-import TweetCard from "../TweetCard/TweetCard";
-import Loader from "../Loader/Loader";
+import TweetCard from "../../components/TweetCard/TweetCard";
+import Loader from "../../components/Loader/Loader";
 import "./style.css";
-import { ICON_ARROWBACK } from "../../utils/Icons";
+import { ICON_ARROWBACK } from "../../helpers/Icons";
 
 const Booksmarks = () => {
   const user = useSelector((state) => state.user.user);

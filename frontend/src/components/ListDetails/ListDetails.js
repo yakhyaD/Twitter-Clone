@@ -5,7 +5,7 @@ import { getListDetails, followList } from "../../redux/actions/dataActions";
 
 // import icons and stuff
 import "./listdetails.css";
-import { ICON_ARROWBACK, ICON_SHARE, ICON_SETTINGS } from "../../utils/Icons";
+import { ICON_ARROWBACK, ICON_SHARE, ICON_SETTINGS } from "../../helpers/Icons";
 import TweetCard from "../TweetCard/TweetCard";
 
 const ListDetails = () => {

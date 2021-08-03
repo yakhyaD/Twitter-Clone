@@ -8,7 +8,7 @@ import {
   searchUser,
   searchTrend,
 } from "../../redux/actions/userActions";
-import { ICON_SEARCH, ICON_SETTINGS, ICON_CLOSE } from "../../utils/Icons";
+import { ICON_SEARCH, ICON_SETTINGS, ICON_CLOSE } from "../../helpers/Icons";
 import Loader from "../Loader/Loader";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";

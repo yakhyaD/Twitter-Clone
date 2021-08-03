@@ -19,6 +19,7 @@ export const LOADING_UI = "LOADING_UI";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const STOP_LOADING_UI = "STOP_LOADING_UI";
 export const SET_FLASH_MSG = "SET_FLASH_MSG";
+export const STOP_LOADER = "STOP_LOADER";
 
 // DATA
 export const SET_TWEETS = "SET_TWEETS  ";

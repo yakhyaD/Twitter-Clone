@@ -13,9 +13,9 @@ import {
   ICON_SETTINGS,
   ICON_FEATHER,
   ICON_LOGOUT,
-} from "../../utils//Icons";
+} from "../../helpers/Icons";
 
-import getActiveTab from "../../utils/getActivePage";
+import getActiveTab from "../../helpers/getActivePage";
 import { logoutUser } from "../../redux/actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 

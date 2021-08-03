@@ -7,14 +7,14 @@ import {
   ICON_IMGUPLOAD,
   ICON_SEND,
   ICON_SETTINGS,
-} from "../../../utils/Icons";
+} from "../../helpers/Icons";
 import { useHistory } from "react-router";
-import { sendMessage } from "../../../redux/actions/chatActions";
-import { token } from "../../../redux/actions/userActions";
+import { sendMessage } from "../../redux/actions/chatActions";
+import { token } from "../../redux/actions/userActions";
 
 const ENDPOINT = "http://localhost:5000";
 
-const ActiveConversation = () => {
+const Chat = () => {
   const conversation = useSelector((state) => state.chat.conversation);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -24,6 +24,10 @@ const ActiveConversation = () => {
   const [text, setText] = useState("");
   const [socket, setSocket] = useState(null);
   const user = useSelector((state) => state.user.user);
+
+  // we use the ref to get rid of the depenncies warnings on useEffect hooks
+  const checkStillInRoom = useRef(() => {});
+  const subscribeOrUpdateChat = useRef(() => {});
 
   useEffect(() => {
     let newScoket = io(ENDPOINT, { query: { token: token() } });
@@ -37,7 +41,7 @@ const ActiveConversation = () => {
     }
   }, [conversation]);
 
-  useEffect(() => {
+   checkStillInRoom.current = () => {
     if (conversation) {
       getChat(conversation._id);
     }
@@ -45,6 +49,11 @@ const ActiveConversation = () => {
       socket.emit("leaveRoom", room);
       return () => socket.off();
     }
+  }
+
+  // unsubscribe from the room when we move to another page
+  useEffect(() => {
+    checkStillInRoom.current()
   }, [history.location.pathname]);
 
   const addMessageToConversation = (message) => {
@@ -63,8 +72,8 @@ const ActiveConversation = () => {
       //setChat((chat) => [...chat, { room: room, id, content: text }]);
     }
   };
-
-  useEffect(() => {
+  // we subscribe to the room on the first render and update the chat on every msg send
+  subscribeOrUpdateChat.current = () => {
     if (socket == null) return;
 
     socket?.emit("subscribe", room);
@@ -74,7 +83,11 @@ const ActiveConversation = () => {
     console.log(chat);
 
     return () => socket?.off("output");
-  }, [chat, socket]);
+  }
+
+  useEffect(() => {
+    subscribeOrUpdateChat.current()
+  }, [socket]);
 
   const getChat = (id) => {
     if (room) {
@@ -205,4 +218,4 @@ const ActiveConversation = () => {
   );
 };
 
-export default ActiveConversation;
+export default Chat;

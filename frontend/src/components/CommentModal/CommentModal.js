@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 
 import { commentTweet, uploadImage } from '../../redux/actions/dataActions'
 
-import { ICON_CLOSE, ICON_EMOJI, ICON_GIF, ICON_IMGUPLOAD } from '../../utils/Icons'
+import { ICON_CLOSE, ICON_EMOJI, ICON_GIF, ICON_IMGUPLOAD } from '../../helpers/Icons'
 import { LOADING_GIF } from '../../config'
 
 const CommentModal = ({ toggleModal, tweet, open }) => {
