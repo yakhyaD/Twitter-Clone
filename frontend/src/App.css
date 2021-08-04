@@ -44,3 +44,20 @@
     transform: rotate(360deg);
   }
 }
+
+/* FLASH_MESSAGE */
+.flash-message {
+  position: absolute;
+  justify-content: center;
+  top: 3%;
+  left: 35%;
+  width: 20%;
+  padding: 5px 30px;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 16px;
+  z-index: 10;
+  display: flex;
+  opacity: 0.85;
+}

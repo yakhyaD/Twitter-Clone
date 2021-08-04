@@ -1,21 +1,9 @@
 import {
-  LOADING_UI,
-  SET_USER,
-  CLEAR_ERRORS,
-  SET_ERRORS,
-  SET_UNAUTHENTICATED,
-  LOADING_USER,
-  SET_PROFILE,
-  FOLLOW_USER,
-  UPDATE_PROFILE,
-  GET_BOOKMARKS,
-  LOADING_SUGGESTION,
-  SET_FOLLOW_SUGGESTION,
-  LOADING_TREND,
-  SET_TRENDS,
-  SEARCH_TREND_RESULTS,
-  SEARCH_USER_RESULTS,
-} from "../type";
+    LOADING_UI, SET_USER, CLEAR_ERRORS, SET_ERRORS, SET_UNAUTHENTICATED, LOADING_USER, SET_PROFILE,
+    FOLLOW_USER, UPDATE_PROFILE, GET_BOOKMARKS, LOADING_SUGGESTION, SET_FOLLOW_SUGGESTION,
+    LOADING_TREND, SET_TRENDS, SEARCH_TREND_RESULTS, SEARCH_USER_RESULTS, FLASH_MESSAGE
+  }
+from "../type";
 import { API_URL } from "../../config";
 import axios from "axios";
 
@@ -29,6 +17,7 @@ export const login = (userData, history) => async (dispatch) => {
     setAuthenticated(token);
     dispatch(getUserData());
     dispatch({ type: CLEAR_ERRORS });
+    dispatch({ type: FLASH_MESSAGE, payload: {msg: "Successfully Registered", color: "#22bb33"} });
     history.push("/home");
   } catch (error) {
       if (networkError.includes(error.message)) {
@@ -51,6 +40,7 @@ export const signup = (userData, history) => async (dispatch) => {
     setAuthenticated(token);
     dispatch(getUserData());
     dispatch({ type: CLEAR_ERRORS });
+    dispatch({ type: FLASH_MESSAGE, payload: {msg: "Successfully Registered", color: "#22bb33"} });
     history.push("/home");
   } catch (error) {
       if (networkError.includes(error.message)) {
@@ -93,9 +83,15 @@ export const getUserProfile = (username) => async (dispatch) => {
   dispatch({ type: LOADING_USER });
   try {
     const res = await axios.get(`${API_URL}/user/${username}`);
-    dispatch({ type: SET_PROFILE, payload: res.data.user });
+    const { user} = res.data
+    if(user) {
+      dispatch({ type: SET_PROFILE, payload: user });
+    }else{
+      throw new Error("User not found");
+    }
   } catch (err) {
-    console.log(err);
+    window.location.href = "/home";
+    dispatch({ type: FLASH_MESSAGE, payload: {msg: err.message, color: "#bb2124"} });
   }
 };
 

@@ -1,12 +1,12 @@
 import "./App.css";
-import React, { Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import jwtDecode from "jwt-decode";
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
 import Signup from "./pages/Signup/Signup";
 import TweetPage from "./pages/Tweet/Tweet";
-import Home from "./pages/Home/Home";
+//import Home from "./pages/Home/Home";
 import AuthRoute from "./helpers/AuthRoute";
 import ListPage from "./components/List/List";
 import ListDetails from "./components/ListDetails/ListDetails";
@@ -20,8 +20,9 @@ import Booksmarks from "./pages/Booksmarks/Booksmarks";
 import Conversations from "./pages/Conversations/Conversations";
 import Chat from "./components/Chat/Chat";
 import Spinner from "./helpers/Spinner";
+import { useSelector } from "react-redux";
 
-//const Home = lazy(() => import('./components/Home/Home'))
+const Home = lazy(() => import('./pages/Home/Home'))
 
 const token = localStorage.getItem("FBIdToken");
 if (token) {
@@ -35,10 +36,13 @@ if (token) {
 }
 
 function App() {
+  const flashMessage = useSelector((state) => state.UI.flashMessage);
+
   return (
     <div>
       <Router>
         <div className="body-wrap">
+          {flashMessage && <div className="flash-message" style={{backgroundColor: flashMessage?.color}}>{"flashMessage"}</div>}
           <div className="header">
             <Navbar />
           </div>

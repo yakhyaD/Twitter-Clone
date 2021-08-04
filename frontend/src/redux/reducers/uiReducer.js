@@ -1,4 +1,4 @@
-import { LOADING_UI, CLEAR_ERRORS, SET_ERRORS, SET_FLASH_MSG, STOP_LOADER } from "../type";
+import { LOADING_UI, CLEAR_ERRORS, SET_ERRORS, SET_FLASH_MSG, STOP_LOADER, FLASH_MESSAGE } from "../type";
 
 const initialState = {
   loading: false,
@@ -50,6 +50,17 @@ const uiReducer = (state = initialState, action) => {
         ...state,
         loading: false,
     };
+    case FLASH_MESSAGE:
+      setTimeout(() => {
+        return {
+          ...state,
+           flash_msg: null,
+        }
+      },1000);
+      return {
+        ...state,
+        flash_msg: action.payload,
+      };
     default:
       return state;
   }

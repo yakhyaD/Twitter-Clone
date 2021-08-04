@@ -18,22 +18,6 @@ router.get("/:username", async (req, res) => {
 
   try {
     let user;
-    /* if (decoded && decoded.username === req.params.username || decoded && decoded.admin) {
-            if (req.query.type === 'liked') {
-                user = await User.findOne({ username: req.params.username }, { username: 0, password: 0 })
-                    .populate('likes')
-                    .populate({
-                        path: 'likes',
-                        populate: {
-                            path:'user', model: 'User', select: 'username profileImg name'
-                        }
-                    })
-            } else {
-                user = await User.findOne({ username: req.params.username }, { password: 0 })
-                    .populate('posts')
-            }
-            return res.json({success: true, user})
-        } else { */
     user = await User.findOne(
       { username: req.params.username },
       { email: 0, password: 0 }
@@ -66,7 +50,7 @@ router.get("/:username", async (req, res) => {
         },
       });
 
-    return res.json({ success: true, user });
+    return res.status(200).json({ success: true, user });
   } catch (err) {
     console.log(err);
     res.status(404).json({ success: false, msg: "User not founded" });
