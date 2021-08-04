@@ -65,6 +65,7 @@ function App() {
             <Route path="/home" component={Feed} />
             <Route path="/tweet/:username/:tweetId" component={Feed} />
             <Route path="/messages" component={Chat} />
+            <Route path="/profile/:username" component={Feed} />
           </div>
           </Suspense>
         </div>

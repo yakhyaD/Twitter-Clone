@@ -22,7 +22,6 @@ const Login = () => {
             dispatch(login(userData, history))
         }
     }
-
     return (
         <div className="login-wrapper">
             <ICON_LOGO/>
@@ -30,11 +29,7 @@ const Login = () => {
                 Log in to Twitter
             </h1>
             <div className="login-error-wrapper" >
-                {errors.length> 0 && errors.map((error, errorIdx) =>
-                    <div key={errorIdx} className="login-error">
-                        {error}
-                    </div>)
-                }
+                {errors && <div className="login-error">{errors?.msg ?? errors }</div>}
             </div>
             <form id="loginForm" onSubmit={(e)=>handleSubmit(e)} className="login-form">
                 <div className="login-input-wrap">
@@ -49,7 +44,6 @@ const Login = () => {
                         <input onChange={(e)=>setPassword(e.target.value)} type="password" name="password" className="login-input"/>
                     </div>
                 </div>
-                {errors.msg && <h1 className="error-alert">{errors.msg}</h1>}
                 <button type="submit" form="loginForm"
                     className={username.length && password.length > 0 && !loading
                         ? "login-btn-wrap button-active" : "login-btn-wrap"}>

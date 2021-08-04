@@ -14,14 +14,32 @@
 .signup-header {
     margin-top: 32px;
     font-size: 31px;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     font-weight: 700;
     color: rgb(15, 20, 25)
+}
+.signup-error-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signup-error {
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+    width: 70%;
+    background-color: rgb(255, 0, 0, .75);
+    padding: 8px;
+    border-radius: 15px;
+    margin: 3px auto;
+    transform: all 3.5s ease-in-out;
 }
 
 .signup-form {
     width: 100%;
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
 .signup-input {
@@ -55,6 +73,7 @@
 }
 
 .signup-btn-wrap {
+    position: relative;
     width: calc(100% - 20px);
     min-height: 49px;
     display: flex;

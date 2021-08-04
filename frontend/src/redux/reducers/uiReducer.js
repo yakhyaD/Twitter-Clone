@@ -2,7 +2,7 @@ import { LOADING_UI, CLEAR_ERRORS, SET_ERRORS, SET_FLASH_MSG, STOP_LOADER } from
 
 const initialState = {
   loading: false,
-  errors: [],
+  errors: null,
   flash_msg: null,
 };
 const uiReducer = (state = initialState, action) => {
@@ -13,15 +13,31 @@ const uiReducer = (state = initialState, action) => {
         loading: true,
       };
     case CLEAR_ERRORS:
-      return {
+      setTimeout(() => {
+        return {
         ...state,
+        errors: null,
         loading: false,
-        errors: {},
       };
-    case SET_ERRORS:
+      }, 1500);
+
       return {
         ...state,
-        errors: [...state.errors, action.payload],
+        errors: null,
+        loading: true,
+      };
+
+    case SET_ERRORS:
+      setTimeout(() => {
+        return {
+        ...state,
+        errors: null,
+        loading: false,
+      };
+      }, 2500);
+      return {
+        ...state,
+        errors: action.payload,
         loading: false,
       };
     case SET_FLASH_MSG:

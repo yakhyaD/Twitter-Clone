@@ -2,7 +2,7 @@ import React from 'react'
 
 const Spinner = ({ size }) => {
     const { width, height, color } = size
-    console.log('Spinner',  width, height)
+
     const style = {
         position: 'absolute',
         top: '30%',
@@ -11,7 +11,7 @@ const Spinner = ({ size }) => {
         height,
         padding: '3px !important',
         margin: '0 !important',
-         backgroundColor : color ?? color
+        backgroundColor : color ?? color
     }
     return (
         <div style={style} className="spinner"></div>

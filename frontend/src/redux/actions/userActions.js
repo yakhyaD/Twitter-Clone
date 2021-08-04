@@ -19,9 +19,11 @@ import {
 import { API_URL } from "../../config";
 import axios from "axios";
 
+const networkError = ['Timeout', 'Network Error', 'ECONNRESET']
+
 export const login = (userData, history) => async (dispatch) => {
+  dispatch({ type: LOADING_UI });
   try {
-    dispatch({ type: LOADING_UI });
     const res = await axios.post(`${API_URL}/auth/login`, userData);
     const token = await `Bearer ${res.data.token}`;
     setAuthenticated(token);
@@ -29,11 +31,18 @@ export const login = (userData, history) => async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
     history.push("/home");
   } catch (error) {
-    // console.error(error)
-    // dispatch({ type: STOP_LOADER });
-    dispatch({ type: SET_ERRORS, payload: error.message });
+      if (networkError.includes(error.message)) {
+        // retry
+        dispatch({type: SET_ERRORS, payload: error.message + " .Try again !!!"});
+      } else {
+        // rethrow other unexpected errors
+        const { msg } = error.response.data
+        console.log(error);
+        dispatch({type: SET_ERRORS, payload: msg});
+      }
   }
 };
+
 export const signup = (userData, history) => async (dispatch) => {
   dispatch({ type: LOADING_UI });
   try {
@@ -44,18 +53,29 @@ export const signup = (userData, history) => async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
     history.push("/home");
   } catch (error) {
-    dispatch({ type: SET_ERRORS, payload: error.response.data });
+      if (networkError.includes(error.message)) {
+        // retry
+        dispatch({type: SET_ERRORS, payload: error.message + " .Try again !!!"});
+      } else {
+        // rethrow other unexpected errors
+        const { msg } = error.response.data
+        console.log(error);
+        dispatch({type: SET_ERRORS, payload: msg});
+      }
   }
 };
+
 export const setAuthenticated = (token) => {
   localStorage.setItem("FBIdToken", token);
   axios.defaults.headers.common["Authorization"] = token;
 };
+
 export const logoutUser = () => (dispatch) => {
   localStorage.removeItem("FBIdToken");
   dispatch({ type: SET_UNAUTHENTICATED });
   window.location.href = "/login";
 };
+
 export const getUserData = () => (dispatch) => {
   dispatch({ type: LOADING_USER });
   axios
@@ -78,6 +98,7 @@ export const getUserProfile = (username) => async (dispatch) => {
     console.log(err);
   }
 };
+
 export const followUser = (id) => async (dispatch) => {
   dispatch({ type: LOADING_UI });
   try {
@@ -87,6 +108,7 @@ export const followUser = (id) => async (dispatch) => {
     console.log(err);
   }
 };
+
 export const updateUserDetails = (username, userData) => async (dispatch) => {
   dispatch({ type: LOADING_UI });
   try {
@@ -97,6 +119,7 @@ export const updateUserDetails = (username, userData) => async (dispatch) => {
     console.log(err);
   }
 };
+
 export const getBookmarks = (username) => async (dispatch) => {
   dispatch({ type: LOADING_USER });
   try {
@@ -117,6 +140,7 @@ export const getFollowSuggestion = (username) => async (dispatch) => {
     console.log(err);
   }
 };
+
 export const getTrendings = () => async (dispatch) => {
   dispatch({ type: LOADING_TREND });
   try {

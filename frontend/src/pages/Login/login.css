@@ -12,7 +12,7 @@
 .login-header {
   margin-top: 32px;
   font-size: 31px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-weight: 700;
   color: rgb(15, 20, 25);
 }
@@ -24,11 +24,11 @@
 }
 .login-error {
   color: #fff;
-  font-size: 17px;
+  font-size: 15px;
   text-align: center;
   width: 70%;
   background-color: rgb(255, 0, 0, .75);
-  padding: 10px;
+  padding: 8px;
   border-radius: 15px;
   margin: 3px auto;
   transform: all 3.5s ease-in-out;

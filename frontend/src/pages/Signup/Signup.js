@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ICON_LOGO } from '../../helpers/Icons'
 import './signup.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { signup } from '../../redux/actions/userActions'
 import { useHistory } from 'react-router-dom'
+import Spinner from '../../helpers/Spinner'
 
 const Signup = () => {
     const [username, setUsername] = useState('')
@@ -15,6 +16,10 @@ const Signup = () => {
     const history = useHistory()
     const { loading, errors } = useSelector(state => state.UI)
 
+    useEffect(() => {
+       dispatch({type: "CLEAR_ERRORS"})
+    }, [history.location.pathname, dispatch])
+
     const handleSubmit = (e) => {
         e.preventDefault()
         if (username.length > 0 && password.length > 0 && name.length > 0 && email.length > 0) {
@@ -24,6 +29,9 @@ const Signup = () => {
             errors.field = "fill all the fields"
         }
     }
+    const activeBtn = () => {
+        return username.length && password.length && name.length && email.length;
+    }
 
     return (
         <div className="signup-wrapper">
@@ -31,6 +39,9 @@ const Signup = () => {
             <h1 className="signup-header">
                 Sign up to Twitter
             </h1>
+            <div className="signup-error-wrapper" >
+                {errors && <div className="signup-error">{errors?.msg ?? errors }</div>}
+            </div>
             <form id="signupForm" onSubmit={(e)=>handleSubmit(e)} className="signup-form">
                 <div className="signup-input-wrap">
                     <div className="signup-input-content">
@@ -56,10 +67,8 @@ const Signup = () => {
                         <input onChange={(e)=>setPassword(e.target.value)} name="password" type="password" className="signup-input"/>
                     </div>
                 </div>
-                {errors.msg && <h1 className="error-alert">{errors.msg}</h1>}
-                {errors.fiels && <h1 className="error-alert">{errors.fiels}</h1>}
-                <button type="submit" form="signupForm" className={username.length && password.length && name.length && email.length && !loading ? "signup-btn-wrap button-active": "signup-btn-wrap"}>
-                    Sign up
+                <button type="submit" form="signupForm" className={activeBtn() && !loading ? "signup-btn-wrap button-active": "signup-btn-wrap"}>
+                   {loading ?  <Spinner size={{width: "20px", height:"20px", color: "#fff"}} /> : "Sign Up"}
                 </button>
             </form>
             <p className="signup-option">

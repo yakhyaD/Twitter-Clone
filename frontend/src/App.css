@@ -10,8 +10,7 @@
   width: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
-  justify-content: center;
-  height: 100vh;
+  justify-content: flex-start;
   position: relative;
 }
 
@@ -21,7 +20,7 @@
   order: -1;
 }
 .main {
-  max-width: 800px;
+  width: 800px;
   display: flex;
   justify-content: space-between;
   position: relative;

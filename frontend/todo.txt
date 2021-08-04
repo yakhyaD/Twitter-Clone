@@ -1,0 +1,9 @@
+add network error to login and signup actions
+
+handle error when signing up failed
+
+delete token from local storage when it expires
+
+start new conversations
+
+take a look (re-rendering, unmount ...) to useEffect hooks and try to optimize them
