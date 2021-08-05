@@ -12,6 +12,7 @@
   overflow-y: hidden;
   justify-content: flex-start;
   position: relative;
+  height: 100vh;
 }
 
 .header {

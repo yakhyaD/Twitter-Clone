@@ -154,7 +154,7 @@ const userReducer = (state = initialState, action) => {
     case SET_FOLLOW_SUGGESTION:
       return {
         ...state,
-        suggestionsFollowers: action.payload,
+        suggestionsFollowers: action.payload.filter(person => person._id !== state.user._id),
         loadingSuggestions: false,
       };
     case SET_TRENDS:

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./feed.css";
@@ -7,6 +7,7 @@ import {
   getTrendings,
   searchUser,
   searchTrend,
+  followUser,
 } from "../../redux/actions/userActions";
 import { ICON_SEARCH, ICON_SETTINGS, ICON_CLOSE } from "../../helpers/Icons";
 import Loader from "../Loader/Loader";
@@ -30,16 +31,10 @@ const Feed = () => {
   );
   const trends = useSelector((state) => state.user.trends);
   const loadingTrend = useSelector((state) => state.user.loadingTrend);
-  useEffect(() => {
-    if (authenticated) {
-      dispatch(getFollowSuggestion(user.username));
-    }
-    return;
-  }, [dispatch, user, authenticated]);
 
-  useEffect(() => {
-    dispatch(getTrendings());
-  }, [dispatch]);
+  const handleFollow = useCallback((userId) => {
+    dispatch(followUser(userId));
+  }, [dispatch])
 
   const handleSearch = (e) => {
     const query = e.target.value;
@@ -53,6 +48,18 @@ const Feed = () => {
     }
     dispatch(searchTrend(query));
   };
+
+  useEffect(() => {
+    if (authenticated) {
+      dispatch(getFollowSuggestion(user.username));
+    }
+    return;
+  }, [dispatch, user, authenticated, handleFollow]);
+
+  useEffect(() => {
+    dispatch(getTrendings());
+  }, [dispatch]);
+
   return (
     <div
       className="feed-wrapper"
@@ -164,7 +171,7 @@ const Feed = () => {
                         </div>
                       </div>
                       <div className="item-buttons">
-                        <div className="follow-btn">Follow</div>
+                        <div onClick={() => handleFollow(user?._id)} className="follow-btn">Follow</div>
                         <div className="ignore-btn">
                           <ICON_CLOSE
                             styles={{ width: "26.25px", height: "26.25px" }}

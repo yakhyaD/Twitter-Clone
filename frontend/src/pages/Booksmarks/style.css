@@ -19,6 +19,10 @@
   align-items: center;
   padding: 0 15px;
 }
+.tweet-wrap h2{
+  text-align: center;
+  padding: 40px 0;
+}
 
 .header-back-wrapper {
   margin: 8px 0;

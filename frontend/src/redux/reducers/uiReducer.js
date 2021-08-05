@@ -13,18 +13,10 @@ const uiReducer = (state = initialState, action) => {
         loading: true,
       };
     case CLEAR_ERRORS:
-      setTimeout(() => {
-        return {
-        ...state,
-        errors: null,
-        loading: false,
-      };
-      }, 1500);
-
       return {
         ...state,
         errors: null,
-        loading: true,
+        loading: setTimeout(() => { return false }, 1500)
       };
 
     case SET_ERRORS:

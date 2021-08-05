@@ -92,6 +92,9 @@
   cursor: pointer;
   display: none;
 }
+.chat-list{
+  position: relative;
+}
 .chat-list h3 {
   font-size: 18px;
   text-align: center;

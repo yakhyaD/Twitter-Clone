@@ -6,8 +6,7 @@
   flex-direction: column;
   position: relative;
   justify-content: flex-start;
-  overflow-y: auto;
-  overflow-x: hidden !important;
+   overflow-y: visible;
 }
 .Home_header_wrapper {
   position: sticky;

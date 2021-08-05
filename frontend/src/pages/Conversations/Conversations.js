@@ -12,6 +12,7 @@ import {
   ICON_SEARCH,
   ICON_SETTINGS,
 } from "../../helpers/Icons";
+import Spinner from "../../helpers/Spinner";
 
 const Conversations = () => {
   const dispatch = useDispatch();
@@ -95,8 +96,8 @@ const Conversations = () => {
       </div>
       <div className="chat-list">
         {loading ? (
-          "Loading..."
-        ) : conversations.length ? (
+          <Spinner size={{width: "30px", height: "30px"}} />
+        ) : conversations?.length  ? (
           conversations?.map((conversation) => cardMarkup(conversation))
         ) : (
           <h3>There is no conversations</h3>

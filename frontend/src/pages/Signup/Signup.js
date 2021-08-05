@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ICON_LOGO } from '../../helpers/Icons'
 import './signup.css'
@@ -15,10 +15,6 @@ const Signup = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const { loading, errors } = useSelector(state => state.UI)
-
-    useEffect(() => {
-       dispatch({type: "CLEAR_ERRORS"})
-    }, [history.location.pathname, dispatch])
 
     const handleSubmit = (e) => {
         e.preventDefault()

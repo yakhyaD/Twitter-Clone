@@ -35,13 +35,11 @@ export const login = (userData, history) => async (dispatch) => {
 export const signup = (userData, history) => async (dispatch) => {
   dispatch({ type: LOADING_UI });
   try {
-    const res = await axios.post(`${API_URL}/auth/signup`, userData);
-    const token = await `Bearer ${res.data.token}`;
-    setAuthenticated(token);
-    dispatch(getUserData());
-    dispatch({ type: CLEAR_ERRORS });
+    await axios.post(`${API_URL}/auth/signup`, userData);
+    dispatch({type: CLEAR_ERRORS})
     dispatch({ type: FLASH_MESSAGE, payload: {msg: "Successfully Registered", color: "#22bb33"} });
-    history.push("/home");
+    dispatch({ type: CLEAR_ERRORS });
+    history.push("/login");
   } catch (error) {
       if (networkError.includes(error.message)) {
         // retry

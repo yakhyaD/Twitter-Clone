@@ -27,11 +27,11 @@ const Home = lazy(() => import('./pages/Home/Home'))
 const token = localStorage.getItem("FBIdToken");
 if (token) {
   const decodedToken = jwtDecode(token);
-  if (decodedToken.exp * 1000 < Date.now()) {
-    store.dispatch(logoutUser());
-  } else {
-    setAuthenticated(token);
-    store.dispatch(getUserData());
+  if (decodedToken && decodedToken.exp * 1000 < Date.now()) {
+      store.dispatch(logoutUser());
+  }else{
+      setAuthenticated(token);
+      store.dispatch(getUserData());
   }
 }
 
@@ -42,7 +42,7 @@ function App() {
     <div>
       <Router>
         <div className="body-wrap">
-          {flashMessage && <div className="flash-message" style={{backgroundColor: flashMessage?.color}}>{"flashMessage"}</div>}
+          {flashMessage && <div className="flash-message" style={{backgroundColor: flashMessage?.color}}>{flashMessage.msg}</div>}
           <div className="header">
             <Navbar />
           </div>
@@ -55,7 +55,7 @@ function App() {
               <AuthRoute exact path="/login" component={Login} />
               <AuthRoute exact path="/signup" component={Signup} />
               <AuthRoute path="/messages" component={Conversations} />
-              <AuthRoute path="/explorer" component={Feed} />
+              <AuthRoute path="/explorer" component={Home} />
               {/* */}
               <Route exact path="/profile/:username" component={Profile} />
               <Route exact path="/tweet/:username/:tweetId" component={TweetPage} />
@@ -67,9 +67,10 @@ function App() {
           </div>
           <div className="sidebar">
             <Route path="/home" component={Feed} />
-            <Route path="/tweet/:username/:tweetId" component={Feed} />
-            <Route path="/messages" component={Chat} />
-            <Route path="/profile/:username" component={Feed} />
+            <AuthRoute path="/tweet/:username/:tweetId" component={Feed} />
+            <AuthRoute path="/messages" component={Chat} />
+            <AuthRoute path="/profile/:username" component={Feed} />
+            <Route path="/explorer" component={Feed} />
           </div>
           </Suspense>
         </div>

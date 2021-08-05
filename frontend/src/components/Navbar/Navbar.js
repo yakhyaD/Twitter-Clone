@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Navbar.css";
 import {
   ICON_LOGO,
@@ -19,18 +19,23 @@ import getActiveTab from "../../helpers/getActivePage";
 import { logoutUser } from "../../redux/actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 
+
 const Navbar = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const authenticated = useSelector((state) => state.user.authenticated);
   const user = useSelector((state) => state.user.user);
-  const [activeTab, setActiveTab] = useState("home");
+  const [activeTab, setActiveTab] = useState("");
 
   const logout = () => {
     dispatch(logoutUser());
   };
   useEffect(() => {
-    setActiveTab(getActiveTab());
-  }, []);
+    const url = history.location.pathname;
+    const activeTab = url.split("/")[1];;
+    (setActiveTab(activeTab))
+
+  }, [history.location.pathname]);
 
   return (
     <div
@@ -61,7 +66,7 @@ const Navbar = () => {
               </div>
             </Link>
             <Link
-              to="/explore"
+              to="/explorer"
               className={
                 activeTab === "explore" ? "Nav-link active-Nav" : "Nav-link"
               }
