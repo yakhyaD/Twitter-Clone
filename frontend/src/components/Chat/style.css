@@ -1,10 +1,10 @@
 .messages-wrapper {
-  max-width: 800px;
+  width: 550px;
   height: 100vh;
   display: flex;
+  align-content: center;
   flex-direction: column;
   border-right: 1px solid rgb(230, 236, 240);
-  margin: 0 auto;
 }
 
 .none-selected {
@@ -74,7 +74,7 @@
   height: 100%;
   width: 100%;
   background-color: #fff;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 .message-block {

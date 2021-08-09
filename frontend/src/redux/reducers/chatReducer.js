@@ -3,6 +3,7 @@ import {
   GET_CONVERSATION,
   SET_CONVERSATIONS,
   SEND_MESSAGE,
+ START_CONVERSATION
 } from "../type";
 
 const initialState = {
@@ -24,6 +25,13 @@ const chatReducer = (state = initialState, action) => {
         loading: false,
       };
     }
+    case START_CONVERSATION:
+      return {
+        ...state,
+        conversations: [...state.conversations, action.payload],
+        conversation: action.payload
+      }
+
     case GET_CONVERSATION:
       return {
         ...state,

@@ -17,7 +17,7 @@ router.get(
         .populate({
           path: "conversations",
           select: "participants updatedAt",
-          options: { sort: { createdAt: -1 } },
+          options: { sort: { updatedAt: -1 } },
           populate: {
             path: "messages",
             select: "content sender _id createdAt",
@@ -31,7 +31,7 @@ router.get(
         .populate({
           path: "conversations",
           select: "participants updatedAt",
-          options: { sort: { updateAt: -1 } },
+          options: { sort: { updatedAt: -1 } },
           populate: {
             path: "participants",
             select: "username name user profileImg",
@@ -102,7 +102,7 @@ router.post(
 
         res
           .status(200)
-          .json({ success: true, msg: "Conversation successfully created" });
+          .json({ success: true, msg: "Conversation successfully created", newConversation });
       }
       // Conversation exist, send message
       if (findChat.length > 0 && req.body.content) {

@@ -37,7 +37,7 @@ const Booksmarks = () => {
             </div>
           </div>
           <div className="tweet-wrap">
-            {bookmarks.length ? (bookmarks?.map((tweet) => (
+            {bookmarks && bookmarks.length ? (bookmarks?.map((tweet) => (
               <TweetCard tweet={tweet} key={tweet._id} />
             ))) : (<h2>No bookmarks</h2>)}
           </div>

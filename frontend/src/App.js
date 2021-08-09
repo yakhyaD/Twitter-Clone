@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./pages/Login/Login";
@@ -21,6 +21,7 @@ import Conversations from "./pages/Conversations/Conversations";
 import Chat from "./components/Chat/Chat";
 import Spinner from "./helpers/Spinner";
 import { useSelector } from "react-redux";
+import StartChatModal from "./components/ChatModal/StartChatModal";
 
 const Home = lazy(() => import('./pages/Home/Home'))
 
@@ -35,14 +36,23 @@ if (token) {
   }
 }
 
+
 function App() {
   const flashMessage = useSelector((state) => state.UI.flashMessage);
-
+  const startChatModal = useSelector((state) => state.UI.startChatModal)
+  useEffect(() => {
+    if (startChatModal) {
+      document.body.style.opacity = "0.9"
+      return
+    }
+    return document.body.style.opacity = "1"
+  }, [startChatModal])
   return (
     <div>
       <Router>
         <div className="body-wrap">
           {flashMessage && <div className="flash-message" style={{backgroundColor: flashMessage?.color}}>{flashMessage.msg}</div>}
+          <StartChatModal open={startChatModal} />
           <div className="header">
             <Navbar />
           </div>

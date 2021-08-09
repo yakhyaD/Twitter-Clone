@@ -32,6 +32,7 @@ const Conversations = () => {
     const sender = conversation.participants.find(
       (participant) => participant._id !== user._id
     );
+    const length = conversation.messages.length -1
     return (
       <div
         key={conversation._id}
@@ -56,7 +57,7 @@ const Conversations = () => {
               <span>@{sender.username}</span>
             </div>
             <div className="last-message">
-              {conversation.messages[0].content}
+              {conversation.messages.length ? conversation.messages[length].content : ""}
             </div>
           </div>
         </div>
@@ -97,7 +98,7 @@ const Conversations = () => {
       <div className="chat-list">
         {loading ? (
           <Spinner size={{width: "30px", height: "30px"}} />
-        ) : conversations?.length  ? (
+        ) : conversations?.length   ? (
           conversations?.map((conversation) => cardMarkup(conversation))
         ) : (
           <h3>There is no conversations</h3>

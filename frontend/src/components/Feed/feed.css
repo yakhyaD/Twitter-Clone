@@ -202,6 +202,7 @@
   font-weight: 700;
   cursor: pointer;
   transition: 0.5s all;
+
 }
 .follow-btn-active:hover {
   background-color: rgb(255, 0, 0, 0.85);

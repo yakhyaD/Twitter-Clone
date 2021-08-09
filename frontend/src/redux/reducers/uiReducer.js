@@ -1,9 +1,10 @@
-import { LOADING_UI, CLEAR_ERRORS, SET_ERRORS, SET_FLASH_MSG, STOP_LOADER, FLASH_MESSAGE } from "../type";
+import { LOADING_UI, CLEAR_ERRORS, SET_ERRORS, SET_FLASH_MSG, STOP_LOADER, FLASH_MESSAGE, OPEN_STARTING_CHAT } from "../type";
 
 const initialState = {
   loading: false,
   errors: null,
   flash_msg: null,
+  startChatModal: false,
 };
 const uiReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -53,6 +54,11 @@ const uiReducer = (state = initialState, action) => {
         ...state,
         flash_msg: action.payload,
       };
+    case OPEN_STARTING_CHAT:
+      return{
+        ...state,
+        startChatModal: !state.startChatModal
+      }
     default:
       return state;
   }

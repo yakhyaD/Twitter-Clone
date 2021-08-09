@@ -118,7 +118,7 @@ io.on("connection", (socket) => {
         });
         findChat[0].messages.push(newMessage);
         let popMsg = await newMessage
-          .populate("sender", "name username", "createdAt")
+          .populate("sender", "name username")
           .execPopulate();
         await findChat[0].save();
         return io.in(msg.room).emit("output", popMsg);

@@ -2,19 +2,19 @@ import React, { useEffect, useState, useRef } from "react";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { io } from "socket.io-client";
-import {
-  ICON_GIF,
-  ICON_IMGUPLOAD,
-  ICON_SEND,
-  ICON_SETTINGS,
-} from "../../helpers/Icons";
+import {ICON_GIF, ICON_IMGUPLOAD, ICON_SEND, ICON_SETTINGS, } from "../../helpers/Icons";
 import { useHistory } from "react-router";
 import { sendMessage } from "../../redux/actions/chatActions";
+import { startChat } from "../../redux/actions/uiActions"
 import { token } from "../../redux/actions/userActions";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 const ENDPOINT = "http://localhost:5000";
 
 const Chat = () => {
+  dayjs.extend(relativeTime);
+
   const conversation = useSelector((state) => state.chat.conversation);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -29,17 +29,15 @@ const Chat = () => {
   const checkStillInRoom = useRef(() => {});
   const subscribeOrUpdateChat = useRef(() => {});
 
+  const startConversation = () => {
+    dispatch(startChat())
+  }
+
   useEffect(() => {
     let newScoket = io(ENDPOINT, { query: { token: token() } });
     setSocket(newScoket);
     return () => newScoket.close();
   }, []);
-
-  useEffect(() => {
-    if (conversation) {
-      setChat((messages) => [...messages, ...conversation.messages]);
-    }
-  }, [conversation]);
 
    checkStillInRoom.current = () => {
     if (conversation) {
@@ -57,7 +55,6 @@ const Chat = () => {
   }, [history.location.pathname]);
 
   const addMessageToConversation = (message) => {
-    console.log(message);
     setChat((messages) => [...messages, message]);
     dispatch(sendMessage(message));
   };
@@ -70,9 +67,11 @@ const Chat = () => {
           : conversation.participants[1]._id;
       socket.emit("chat", { room: room, id, content: text });
       //setChat((chat) => [...chat, { room: room, id, content: text }]);
+      const div = document.querySelector(".chat-block")
+      div.scrollTop = div.scrollHeight - div.clientHeight
     }
   };
-  // we subscribe to the room on the first render and update the chat on every msg send
+  //we subscribe to the room on the first render and update the chat on every msg send
   subscribeOrUpdateChat.current = () => {
     if (socket == null) return;
 
@@ -80,14 +79,20 @@ const Chat = () => {
 
     socket?.on("output", (message) => addMessageToConversation(message));
 
-    console.log(chat);
-
     return () => socket?.off("output");
   }
 
   useEffect(() => {
     subscribeOrUpdateChat.current()
   }, [socket]);
+
+  useEffect(() => {
+    if (conversation) {
+      setChat(() => [...conversation.messages]);
+      const div = document.querySelector(".chat-block")
+      div.scrollTop = div.scrollHeight - div.clientHeight
+    }
+  }, [conversation]);
 
   const getChat = (id) => {
     if (room) {
@@ -103,19 +108,27 @@ const Chat = () => {
       sendMsg();
     }
   };
-
   const noMessageMarkup = (
     <div className="none-selected">
       <h2>You don't have a message selected</h2>
       <p>Choose one fro your existing messages, or start a new one.</p>
       <div
         className="newMessage-btn"
-        //onClick={() => startConversation(conversation)}
+        onClick={() => startConversation()}
       >
         New Message
       </div>
     </div>
   );
+  const compare = ( a, b ) => {
+    if ( a.createdAt < b.createdAt ){
+      return -1;
+    }
+    if ( a.createdAt > b.createdAt ){
+      return 1;
+    }
+    return 0;
+  }
   const conversationMarkup = () => {
     const { participants } = conversation;
     const sender = participants?.find(
@@ -124,6 +137,7 @@ const Chat = () => {
     const isMe = (id) => {
       return id === user?._id;
     };
+    const sortedChat = chat.sort(compare)
     return (
       <>
         <div className="messages-header">
@@ -149,7 +163,7 @@ const Chat = () => {
           </div>
         </div>
         <div className="chat-block">
-          {chat?.map((message) => (
+          {sortedChat?.map((message) => (
             <div
               key={message?._id}
               className={
@@ -181,7 +195,7 @@ const Chat = () => {
                 }
               >
                 <div className="message-content">{message.content}</div>
-                <div className="message-date">24/05/21, 15:54</div>
+                <div className="message-date">{dayjs(message.createdAt).fromNow()}</div>
               </div>
             </div>
           ))}
