@@ -16,6 +16,7 @@ import {
   LOADING_TREND,
   SEARCH_USER_RESULTS,
   SEARCH_TREND_RESULTS,
+  IGNORE_USER,
 } from "../type";
 
 const initialState = {
@@ -175,6 +176,11 @@ const userReducer = (state = initialState, action) => {
         searchTrendResult: action.payload,
         loading: false,
       };
+    case IGNORE_USER:
+      return {
+        ...state,
+        suggestionsFollowers: state.suggestionsFollowers.filter(user => user === action.payload)
+      }
     default:
       return state;
   }

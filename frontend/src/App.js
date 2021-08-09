@@ -69,7 +69,7 @@ function App() {
             <Route path="/home" component={Feed} />
             <AuthRoute path="/tweet/:username/:tweetId" component={Feed} />
             <AuthRoute path="/messages" component={Chat} />
-            <AuthRoute path="/profile/:username" component={Feed} />
+            <Route path="/profile/:username" component={Feed} />
             <Route path="/explorer" component={Feed} />
           </div>
           </Suspense>

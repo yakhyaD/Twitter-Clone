@@ -74,7 +74,7 @@ const Profile = () => {
           <div className="profile-details-wrapper">
             <div className="profile-options">
               <div className="profile-image-wrapper">
-                <img src={profile?.profileImg} alt="profileImage" />
+                <img src={profile?.profileImg ?? profile?.profileImage} alt="profileImage" />
               </div>
               {authenticated ? (
                 isMyProfile() ? (

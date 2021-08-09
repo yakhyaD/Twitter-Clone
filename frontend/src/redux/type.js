@@ -12,6 +12,7 @@ export const LOADING_TREND = "LOADING_TREND";
 export const SET_TRENDS = "SET_TRENDS";
 export const SEARCH_USER_RESULTS = "SEARCH_USER_RESULTS";
 export const SEARCH_TREND_RESULTS = "SEARCH_TREND_RESULTS";
+export const IGNORE_USER = "IGNORE_USER";
 
 // UI
 export const SET_ERRORS = "SET_ERRORS";

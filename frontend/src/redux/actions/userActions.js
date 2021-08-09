@@ -1,7 +1,7 @@
 import {
     LOADING_UI, SET_USER, CLEAR_ERRORS, SET_ERRORS, SET_UNAUTHENTICATED, LOADING_USER, SET_PROFILE,
     FOLLOW_USER, UPDATE_PROFILE, GET_BOOKMARKS, LOADING_SUGGESTION, SET_FOLLOW_SUGGESTION,
-    LOADING_TREND, SET_TRENDS, SEARCH_TREND_RESULTS, SEARCH_USER_RESULTS, FLASH_MESSAGE
+    LOADING_TREND, SET_TRENDS, SEARCH_TREND_RESULTS, SEARCH_USER_RESULTS, FLASH_MESSAGE, IGNORE_USER
   }
 from "../type";
 import { API_URL } from "../../config";
@@ -162,6 +162,10 @@ export const searchTrend = (query) => async (dispatch) => {
     console.log(err);
   }
 };
+export const ignore = (userId) => (dispatch) => {
+  dispatch({type: IGNORE_USER, payload: userId});
+}
+
 export const token = () => {
   if (localStorage.getItem("FBIdToken")) {
     return localStorage.getItem("FBIdToken");

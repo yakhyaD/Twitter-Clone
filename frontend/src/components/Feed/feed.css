@@ -191,6 +191,22 @@
   cursor: pointer;
   transition: 0.5s all;
 }
+.follow-btn-active {
+  border: 1px solid rgb(29, 192, 242, 1);
+  padding: 8px 20px;
+  border-radius: 15px;
+  margin-right: 15px;
+  background-color: rgb(29, 192, 242);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+.follow-btn-active:hover {
+  background-color: rgb(255, 0, 0, 0.85);
+  color: #fff;
+}
 .follow-btn:hover {
   background-color: rgb(29, 192, 242);
   color: #fff;

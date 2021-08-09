@@ -1,14 +1,8 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./feed.css";
-import {
-  getFollowSuggestion,
-  getTrendings,
-  searchUser,
-  searchTrend,
-  followUser,
-} from "../../redux/actions/userActions";
+import {getFollowSuggestion, getTrendings, searchUser, searchTrend, followUser, ignore} from "../../redux/actions/userActions";
 import { ICON_SEARCH, ICON_SETTINGS, ICON_CLOSE } from "../../helpers/Icons";
 import Loader from "../Loader/Loader";
 import { useHistory } from "react-router-dom";
@@ -32,9 +26,17 @@ const Feed = () => {
   const trends = useSelector((state) => state.user.trends);
   const loadingTrend = useSelector((state) => state.user.loadingTrend);
 
-  const handleFollow = useCallback((userId) => {
+  const handleFollow = (userId) => {
     dispatch(followUser(userId));
-  }, [dispatch])
+  }
+
+  const isFollowing = (personId) => {
+    return user.following.includes(personId) ? true : false;
+  };
+
+  const ignoreUser = (userId) => {
+    dispatch(ignore(userId));
+  }
 
   const handleSearch = (e) => {
     const query = e.target.value;
@@ -54,7 +56,7 @@ const Feed = () => {
       dispatch(getFollowSuggestion(user.username));
     }
     return;
-  }, [dispatch, user, authenticated, handleFollow]);
+  }, [dispatch, user, authenticated]);
 
   useEffect(() => {
     dispatch(getTrendings());
@@ -171,8 +173,8 @@ const Feed = () => {
                         </div>
                       </div>
                       <div className="item-buttons">
-                        <div onClick={() => handleFollow(user?._id)} className="follow-btn">Follow</div>
-                        <div className="ignore-btn">
+                        <div onClick={() => handleFollow(user?._id)} className={isFollowing(user) ? "follow-btn-active" : "follow-btn"}>{isFollowing(user?._id) ? "Following" : "Follow"}</div>
+                        <div className="ignore-btn" onClick={() => ignoreUser(user?._id)}>
                           <ICON_CLOSE
                             styles={{ width: "26.25px", height: "26.25px" }}
                           />
