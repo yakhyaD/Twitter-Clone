@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./style.css";
-
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import { useDispatch, useSelector } from "react-redux";
 import { getConversations, getConversation } from "../../redux/actions/chatActions";
 import {ICON_ARROWBACK, ICON_NEWMSG, ICON_SEARCH, ICON_SETTINGS } from "../../helpers/Icons";
@@ -8,6 +9,8 @@ import Spinner from "../../helpers/Spinner";
 import { startChat } from "../../redux/actions/uiActions";
 
 const Conversations = () => {
+  dayjs.extend(relativeTime);
+
   const dispatch = useDispatch();
   const conversations = useSelector((state) => state.chat.conversations);
   const loading = useSelector((state) => state.chat.loading);
@@ -57,7 +60,7 @@ const Conversations = () => {
             </div>
           </div>
         </div>
-        <div className="message-date">1 jours</div>
+        <div className="message-date">{dayjs(conversation?.messages[length].createdAt).fromNow()}</div>
       </div>
     );
   };

@@ -1,11 +1,5 @@
 import axios from "axios";
-import {
-  LOADING_CONVERSATION,
-  SET_CONVERSATIONS,
-  START_CONVERSATION,
-  GET_CONVERSATION,
-  SEND_MESSAGE,
-} from "../type";
+import {LOADING_CONVERSATION, SET_CONVERSATIONS, START_CONVERSATION, GET_CONVERSATION, SEND_MESSAGE} from "../type";
 import { API_URL } from "../../config";
 
 export const getConversations = () => async (dispatch) => {
@@ -26,7 +20,6 @@ export const getConversation = (conversation) => (dispatch) => {
 export const sendMessage = (message) => (dispatch) => {
   dispatch({ type: SEND_MESSAGE, payload: message });
 };
-
 
 export const startConversation = (body) => async (dispatch) => {
   dispatch({type: LOADING_CONVERSATION})

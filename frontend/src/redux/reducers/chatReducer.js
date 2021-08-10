@@ -37,6 +37,7 @@ const chatReducer = (state = initialState, action) => {
       return {
         ...state,
         conversation: action.payload,
+        loading: false
       };
     case SEND_MESSAGE:
       let newConversation = state.conversation;

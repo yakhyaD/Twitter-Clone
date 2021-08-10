@@ -62,8 +62,8 @@ function App() {
               <Redirect exact path="/" to="/home" />
               <AuthRoute exact path="/home" component={Home} />
               <AuthRoute path="/bookmarks" component={Booksmarks} />
-              <AuthRoute exact path="/login" component={Login} />
-              <AuthRoute exact path="/signup" component={Signup} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
               <AuthRoute path="/messages" component={Conversations} />
               <AuthRoute path="/explorer" component={Home} />
               {/* */}
