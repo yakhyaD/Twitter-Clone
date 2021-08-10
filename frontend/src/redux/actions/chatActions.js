@@ -21,10 +21,15 @@ export const getConversations = () => async (dispatch) => {
 export const getConversation = (conversation) => (dispatch) => {
   dispatch({ type: GET_CONVERSATION, payload: conversation });
 };
+
+
 export const sendMessage = (message) => (dispatch) => {
   dispatch({ type: SEND_MESSAGE, payload: message });
 };
+
+
 export const startConversation = (body) => async (dispatch) => {
+  dispatch({type: LOADING_CONVERSATION})
   try {
     const res = await axios.post(`${API_URL}/chat/conversation`, body);
     console.log(res.data.newConversations);

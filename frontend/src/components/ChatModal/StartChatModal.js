@@ -23,9 +23,8 @@ const StartChatModal = ({ open }) => {
         try {
             const { data } = await axios.post(`${API_URL}/user`, " ")
             const result = await data.result.filter(r => user?.following.includes(r._id))
-            setResultSearch(result)
             setUsers(result)
-            setLoading(false)
+            return
         } catch (error) {
             console.error(error)
             setLoading(false)
@@ -34,18 +33,21 @@ const StartChatModal = ({ open }) => {
 
     useEffect(() => {
         fetchUsers.current()
-    }, [])
+    }, [open])
 
+    useEffect(() => {
+        setResultSearch(users)
+        setLoading(false)
+    }, [users])
 
     const handleSearch = (e) => {
         const query = e.target.value
         if(query.length < 1) {
-            setResultSearch(users, query)
+            fetchUsers.current();
             return
         }
-        let res = (users.find(user => user?.name.includes(query) || user?.username.includes(query)))
-        console.log(res)
-        setResultSearch(data => [res])
+        let res = users.filter(user => user?.name.includes(query) || user?.username.includes(query))
+        setResultSearch(res)
     }
     const closeModal = () => {
         setResultSearch([])
@@ -54,6 +56,7 @@ const StartChatModal = ({ open }) => {
     }
     const createChat = (userId) => {
         dispatch(startConversation({id: userId}))
+        closeModal()
     }
 
     return (
@@ -70,7 +73,7 @@ const StartChatModal = ({ open }) => {
                 <input type="text" placeholder="Search" onChange={handleSearch} />
            </div>
             <div className="users-list-section">
-                {!loading ? (!(resultSearch.length < 1) ? resultSearch.map( (user) =>
+                {!loading ? (resultSearch.length > 0 ? resultSearch.map( (user) =>
                     (<div className="user" onClick={() => createChat(user._id)}>
                         <div key={user?._id} className="user-profile">
                             <a href="/">

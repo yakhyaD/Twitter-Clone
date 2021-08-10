@@ -2,17 +2,10 @@ import React, { useEffect } from "react";
 import "./style.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getConversations,
-  getConversation,
-} from "../../redux/actions/chatActions";
-import {
-  ICON_ARROWBACK,
-  ICON_NEWMSG,
-  ICON_SEARCH,
-  ICON_SETTINGS,
-} from "../../helpers/Icons";
+import { getConversations, getConversation } from "../../redux/actions/chatActions";
+import {ICON_ARROWBACK, ICON_NEWMSG, ICON_SEARCH, ICON_SETTINGS } from "../../helpers/Icons";
 import Spinner from "../../helpers/Spinner";
+import { startChat } from "../../redux/actions/uiActions";
 
 const Conversations = () => {
   const dispatch = useDispatch();
@@ -27,12 +20,15 @@ const Conversations = () => {
   const selectConversation = (conversation) => {
     dispatch(getConversation(conversation));
   };
+  const newConversation = () => {
+    dispatch(startChat())
+  }
 
   const cardMarkup = (conversation) => {
-    const sender = conversation.participants.find(
+    const sender = conversation?.participants?.find(
       (participant) => participant._id !== user._id
     );
-    const length = conversation.messages.length -1
+    const length = conversation.messages.length ? conversation.messages.length -1 : 0
     return (
       <div
         key={conversation._id}
@@ -73,7 +69,7 @@ const Conversations = () => {
           <div className="icon">
             <ICON_SETTINGS styles={{ width: "26.25px", height: "26.25px" }} />
           </div>
-          <div className="icon">
+          <div className="icon" onClick={() => newConversation()}>
             <ICON_NEWMSG styles={{ width: "26.25px", height: "26.25px" }} />
           </div>
         </div>
