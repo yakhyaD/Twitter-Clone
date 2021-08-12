@@ -1,3 +1,5 @@
-start new conversations
+add edit user profile
 
-take a look (re-rendering, unmount ...) to useEffect hooks and try to optimize them
+add send image in chat
+
+add logout button

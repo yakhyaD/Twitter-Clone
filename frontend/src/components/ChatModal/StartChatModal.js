@@ -73,9 +73,9 @@ const StartChatModal = ({ open }) => {
                 <input type="text" placeholder="Search" onChange={handleSearch} />
            </div>
             <div className="users-list-section">
-                {!loading ? (resultSearch.length > 0 ? resultSearch.map( (user) =>
+                {!loading ? (resultSearch.length > 0 ? resultSearch.map((user, index) =>
                     (<div className="user" onClick={() => createChat(user._id)}>
-                        <div key={user?._id} className="user-profile">
+                        <div key={user?._id ?? index} className="user-profile">
                             <a href="/">
                             <img
                                 style={{ borderRadius: "50%", minWidth: "49px" }}

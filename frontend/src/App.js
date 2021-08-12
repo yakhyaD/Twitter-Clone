@@ -60,7 +60,7 @@ function App() {
           <div className="main">
             <Switch>
               <Redirect exact path="/" to="/home" />
-              <AuthRoute exact path="/home" component={Home} />
+              <Route exact path="/home" component={Home} />
               <AuthRoute path="/bookmarks" component={Booksmarks} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />

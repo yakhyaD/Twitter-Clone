@@ -1,7 +1,7 @@
 import {
     LOADING_UI, SET_USER, CLEAR_ERRORS, SET_ERRORS, SET_UNAUTHENTICATED, LOADING_USER, SET_PROFILE,
     FOLLOW_USER, UPDATE_PROFILE, GET_BOOKMARKS, LOADING_SUGGESTION, SET_FOLLOW_SUGGESTION,
-    LOADING_TREND, SET_TRENDS, SEARCH_TREND_RESULTS, SEARCH_USER_RESULTS, FLASH_MESSAGE, IGNORE_USER, SET_AUTHENTICATED
+    LOADING_TREND, SET_TRENDS, SEARCH_TREND_RESULTS, SEARCH_USER_RESULTS, FLASH_MESSAGE, IGNORE_USER
   }
 from "../type";
 import { API_URL } from "../../config";
@@ -21,6 +21,7 @@ export const login = (userData, history) => async (dispatch) => {
   } catch (error) {
       if (networkError.includes(error.message)) {
         // retry
+        console.log(error)
         dispatch({type: SET_ERRORS, payload: error.message + " .Try again !!!"});
       } else {
         // rethrow other unexpected errors
@@ -52,7 +53,7 @@ export const signup = (userData, history) => async (dispatch) => {
   }
 };
 
-export const setAuthenticated = (token) => (dispatch) => {
+export const setAuthenticated = (token) => {
   localStorage.setItem("FBIdToken", token);
   axios.defaults.headers.common["Authorization"] = token;
 };
@@ -63,24 +64,22 @@ export const logoutUser = () => (dispatch) => {
   window.location.href = "/login";
 };
 
-export const getUserData = () => (dispatch) => {
+export const getUserData = () => async (dispatch) => {
   dispatch({ type: LOADING_USER });
-  axios
-    .get(`${API_URL}/auth/user`)
-    .then((res) => {
-      dispatch({ type: SET_USER, payload: res.data });
-    })
-    .catch((error) => {
-      console.log(error);
-      //dispatch({ type: SET_ERRORS, payload: error.response.data })
-    });
+  try {
+    const res = await axios.get(`${API_URL}/auth/user`)
+    dispatch({ type: SET_USER, payload: res.data });
+  }catch(error){
+    console.log(error);
+    //dispatch({ type: SET_ERRORS, payload: error.response.data })
+    };
 };
 
 export const getUserProfile = (username) => async (dispatch) => {
   dispatch({ type: LOADING_USER });
   try {
     const res = await axios.get(`${API_URL}/user/${username}`);
-    const { user} = res.data
+    const { user } = res.data
     if(user) {
       dispatch({ type: SET_PROFILE, payload: user });
     }else{
