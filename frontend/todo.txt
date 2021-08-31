@@ -1,4 +1,10 @@
-add edit user profile
+add edit user profile: done
+
+create global component which store all modal component:
+
+add Edit user profile modal to GlobalModalComponent
+
+adapt the styling
 
 add send image in chat
 

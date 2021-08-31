@@ -15,6 +15,7 @@
 - Websocket management: <a href="https://github.com/socketio/socket.io">`Socket.io`</a>
 - Backend: <a href="https://github.com/expressjs/express">`Express`</a>
 - Database: <a href="https://github.com/Automattic/mongoose">`MongoDB`</a>
+- Firebase: For cloud storage images
 
 ---
 
@@ -32,16 +33,11 @@
 $ cd backend && npm install
 ```
 
-> Set up a MongoDB database either locally or provision a free database with <a href='https://www.mongodb.com/cloud/atlas'>`MongoDB Atlas`</a>
+> Set up a MongoDB database either locally or provision a free database
 
-> Create a .env file in the root directory
+> Create a .env file in the root directory.
 
-> Set up required environment variables
-
-```javascript
-MONGO_URI= // mongodb://localhost:27017/instaclone
-JWT_SECRET= // random string: j2390jf09kjsalkj4r93
-```
+> Set up required environment variables by looking at .env.example file.
 
 > In the root directory run both the backend and the front end with the following command
 
@@ -53,26 +49,18 @@ The app should launch automatically, enjoy playing around 😄
 
 ---
 
-## Installation - Setup the front Docker
-
-### Clone
-
-- Clone this repo to your local machine using `https://github.com/yakhyaD/Twitter-Clone`
-
-### Setup
+## Installation - Setup the front
 
 > Install npm dependencies using npm install
 
 ```shell
-$ cd backend && npm install
+$ cd frontend && npm install
+or
+$ yarn install
 
 ```shell
+$ npm run start
+or
 $ yarn start
 ```
-
-## Support
-
-Reach out to me at one of the following places!
-
-- Email at <a href="mailto:yakhyadiom@gmail.com">`yakhyadiome@gmail.com`</a>
 
