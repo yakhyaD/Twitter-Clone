@@ -39,11 +39,14 @@ $ cd backend && npm install
 
 > Set up required environment variables by looking at .env.example file.
 
-> In the backend directory with the following command
+> In the root directory run both the backend and the front end with the following command
 
 ```shell
-$ npm run start
+$ npm run dev
 ```
+
+The app should launch automatically, enjoy playing around 😄
+
 ---
 
 ## Installation - Setup the front
@@ -54,18 +57,10 @@ $ npm run start
 $ cd frontend && npm install
 or
 $ yarn install
-	or
-$ npm install
-```
-
-> In the frontend directory run:
 
 ```shell
 $ npm run start
 or
 $ yarn start
 ```
-
-And now Enjoy it !!!!!!!
-
 
