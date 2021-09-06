@@ -173,7 +173,11 @@ const Feed = () => {
                         </div>
                       </div>
                       <div className="item-buttons">
-                        <div onClick={() => handleFollow(user?._id)} className={isFollowing(user) ? "follow-btn-active" : "follow-btn"}>{isFollowing(user?._id) ? "Following" : "Follow"}</div>
+                        <div onClick={() => handleFollow(user?._id)}
+                          className={isFollowing(user) ? "follow-btn-active" : "follow-btn"}
+                        >
+                          {isFollowing(user?._id) ? "Following" : "Follow"}
+                        </div>
                         <div className="ignore-btn" onClick={() => ignoreUser(user?._id)}>
                           <ICON_CLOSE
                             styles={{ width: "26.25px", height: "26.25px" }}

@@ -17,6 +17,7 @@ import {
   SEARCH_USER_RESULTS,
   SEARCH_TREND_RESULTS,
   IGNORE_USER,
+  SET_ERRORS,
 } from "../type";
 
 const initialState = {
@@ -38,6 +39,19 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         authenticated: true,
+      };
+    case SET_ERRORS:
+      setTimeout(() => {
+        return {
+        ...state,
+        errors: null,
+        loading: false,
+      };
+      }, 2500);
+      return {
+        ...state,
+        errors: action.payload,
+        loading: false,
       };
     case SET_UNAUTHENTICATED:
       return {

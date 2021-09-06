@@ -15,7 +15,6 @@ import {
   ICON_LOGOUT,
 } from "../../helpers/Icons";
 
-import getActiveTab from "../../helpers/getActivePage";
 import { logoutUser } from "../../redux/actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -32,7 +31,8 @@ const Navbar = () => {
   };
   useEffect(() => {
     const url = history.location.pathname;
-    const activeTab = url.split("/")[1];;
+    const activeTab = (url.split("/")[1]).toLowerCase();
+
     (setActiveTab(activeTab))
 
   }, [history.location.pathname]);

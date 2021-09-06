@@ -9,12 +9,13 @@ import axios from 'axios';
 import { API_URL } from '../../config';
 import Spinner from '../../helpers/Spinner';
 
-const StartChatModal = ({ open }) => {
+const StartChatModal = () => {
     const dispatch = useDispatch()
     const [users, setUsers] = useState([])
     const [resultSearch, setResultSearch] = useState([])
     const [loading, setLoading] = useState(false)
     const user  = useSelector(state => state.user.user)
+    const openChatModal = useSelector((state) => state.UI.openChatModal)
 
     const fetchUsers = useRef(() => {})
 
@@ -33,7 +34,7 @@ const StartChatModal = ({ open }) => {
 
     useEffect(() => {
         fetchUsers.current()
-    }, [open])
+    }, [openChatModal])
 
     useEffect(() => {
         setResultSearch(users)
@@ -60,7 +61,7 @@ const StartChatModal = ({ open }) => {
     }
 
     return (
-        <div className="chat-modal-wrapper" style={{display: open ? 'flex' : 'none'}} >
+        <div className="chat-modal-wrapper" style={{ display: openChatModal ? 'flex' : 'none'}} >
            <div className="close_section" >
                <div onClick={closeModal}>
                     <ICON_CLOSE  />

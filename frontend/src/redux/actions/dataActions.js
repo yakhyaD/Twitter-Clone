@@ -27,8 +27,8 @@ export const getAllTweets = () => async (dispatch) => {
   }
 };
 export const getOneTweet = (id) => async (dispatch) => {
+  dispatch({ type: LOADING_DATA });
   try {
-    dispatch({ type: LOADING_DATA });
     const res = await axios.get(`${API_URL}/tweet/${id}`);
     dispatch({ type: SET_TWEET, payload: res.data.tweet });
   } catch (err) {

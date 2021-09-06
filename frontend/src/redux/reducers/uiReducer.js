@@ -4,7 +4,7 @@ const initialState = {
   loading: false,
   errors: null,
   flash_msg: null,
-  startChatModal: false,
+  openChatModal: false,
 };
 const uiReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -57,7 +57,7 @@ const uiReducer = (state = initialState, action) => {
     case OPEN_STARTING_CHAT:
       return{
         ...state,
-        startChatModal: !state.startChatModal
+        openChatModal: !state.openChatModal
       }
     default:
       return state;

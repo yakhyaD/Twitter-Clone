@@ -18,7 +18,7 @@ const Chat = () => {
   const conversation = useSelector((state) => state.chat.conversation);
   const history = useHistory();
   const dispatch = useDispatch();
-  const messageBody = useRef();
+  const chatBlockRef = useRef();
   const [chat, setChat] = useState([]);
   const [room, setRoom] = useState(null);
   const [text, setText] = useState("");
@@ -48,6 +48,8 @@ const Chat = () => {
       return () => socket.off();
     }
   }
+  //console.log('current', chatBlockRef.current)
+
 
   // unsubscribe from the room when we move to another page
   useEffect(() => {
@@ -67,8 +69,8 @@ const Chat = () => {
           : conversation.participants[1]._id;
       socket.emit("chat", { room: room, id, content: text });
       //setChat((chat) => [...chat, { room: room, id, content: text }]);
-      const div = document.querySelector(".chat-block")
-      div.scrollTop = div.scrollHeight - div.clientHeight
+      chatBlockRef.current.scrollTop = chatBlockRef.current.scrollHeight - chatBlockRef.current.clientHeight;
+      console.log('sendMsg', chatBlockRef.current.scrollHeight);
     }
   };
   //we subscribe to the room on the first render and update the chat on every msg send
@@ -89,8 +91,9 @@ const Chat = () => {
   useEffect(() => {
     if (conversation) {
       setChat(() => [...conversation.messages]);
-      const div = document.querySelector(".chat-block")
-      div.scrollTop = div.scrollHeight - div.clientHeight
+      console.log('conv1', chatBlockRef.current.scrollHeight);
+      chatBlockRef.current.scrollTop = chatBlockRef.current.scrollHeight - chatBlockRef.current.clientHeight;
+      console.log('conv2', chatBlockRef.current.scrollHeight);
     }
   }, [conversation]);
 
@@ -162,7 +165,7 @@ const Chat = () => {
             <ICON_SETTINGS styles={{ width: "26.25px", height: "26.25px" }} />
           </div>
         </div>
-        <div className="chat-block">
+        <div className="chat-block" ref={chatBlockRef}>
           {sortedChat?.map((message) => (
             <div
               key={message?._id}
@@ -226,7 +229,7 @@ const Chat = () => {
     );
   };
   return (
-    <div className="messages-wrapper" ref={messageBody}>
+    <div className="messages-wrapper">
       {conversation ? conversationMarkup() : noMessageMarkup}
     </div>
   );

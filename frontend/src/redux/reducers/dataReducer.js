@@ -10,6 +10,7 @@ import {
   SET_LIST_DETAILS,
   FOLLOW_LIST,
   DELETE_TWEET,
+  SET_ERRORS,
 } from "../type";
 
 const initialState = {
@@ -25,6 +26,19 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case SET_ERRORS:
+      setTimeout(() => {
+        return {
+          ...state,
+          errors: null,
+          loading: false,
+        };
+      }, 2500);
+      return {
+        ...state,
+        errors: action.payload,
+        loading: false,
       };
     case SET_TWEETS:
       return {

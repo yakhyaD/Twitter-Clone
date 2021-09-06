@@ -1,5 +1,8 @@
 .login-wrapper {
-  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   max-width: 500px;
   padding: 15px;
   margin: 80px auto 0 auto;
@@ -26,10 +29,9 @@
   color: #fff;
   font-size: 15px;
   text-align: center;
-  width: 70%;
   background-color: rgb(255, 0, 0, .75);
-  padding: 8px;
-  border-radius: 15px;
+  padding: 8px 40px;
+  border-radius: 10px;
   margin: 3px auto;
   transform: all 3.5s ease-in-out;
 }

@@ -84,7 +84,7 @@ const Home = () => {
           </div>
         )}
       </div>
-      {!loading && authenticated && (
+      {authenticated && (
         <div className="Tweet_input_wrapper">
           <div className="Tweet_profile_wrapper">
             <a href={`/profile/${user?.username}`}>
