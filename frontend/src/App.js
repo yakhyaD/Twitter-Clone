@@ -5,7 +5,7 @@ import Profile from "./pages/Profile/Profile";
 import Signup from "./pages/Signup/Signup";
 import TweetPage from "./pages/Tweet/Tweet";
 import AuthRoute from "./helpers/AuthRoute";
-import ListPage from "./components/List/List";
+import ListPage from "./pages/List/List";
 import ListDetails from "./components/ListDetails/ListDetails";
 import Booksmarks from "./pages/Booksmarks/Booksmarks";
 import Conversations from "./pages/Conversations/Conversations";
@@ -55,24 +55,24 @@ const defaultContainer = () => {
             <Route exact path="/home" component={Home} />
             <AuthRoute path="/bookmarks" component={Booksmarks} />
             <AuthRoute path="/messages" component={Conversations} />
-            <AuthRoute path="/explorer" component={Home} />
+            {/* <AuthRoute path="/explorer" component={Home} /> */}
             {/* */}
             <Route exact path="/profile/:username" component={Profile} />
             <Route exact path="/tweet/:username/:tweetId" component={TweetPage} />
-            <Route exact path="/:username/lists" component={ListPage} />
             <Route exact path="/:username/lists" component={ListPage} />
             <Route exact path="/list/:listId" component={ListDetails} />
             <Route path="*" component={Home} />
           </Switch>
         </div>
       </Suspense>
-      <Suspense fallback={<Spinner size={{ width: "200px", height: "150px" }} />}>
+      <Suspense fallback={<Spinner size={{ width: "20px", height: "20px" }} />}>
         <div className="sidebar">
           <Route path="/home" component={Feed} />
           <Route path="/tweet/:username/:tweetId" component={Feed} />
           <Route path="/messages" component={Chat} />
           <Route path="/profile/:username" component={Feed} />
           <Route path="/explorer" component={Feed} />
+          <Route path="/:usersname/lists" component={Feed} />
         </div>
       </Suspense>
     </div>

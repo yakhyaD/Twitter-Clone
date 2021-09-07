@@ -154,7 +154,10 @@ const Profile = () => {
               ? profile?.likes?.map((tweet) => (
                   <TweetCard tweet={tweet} key={tweet?._id} />
                 ))
-              : "Medias"}
+                : profile?.tweets.filter((tweet) => tweet.image.length > 0)?.map((tweet) => (
+                  <TweetCard tweet={tweet} key={tweet?._id} />
+                ))
+            }
           </div>
         </div>
       ) : (

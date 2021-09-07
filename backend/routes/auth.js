@@ -49,13 +49,9 @@ router.post("/login", (req, res, next) => {
       if (err) {
         return res.status(400).json(err);
       }
-      let userData = {
-        id: user._id,
-        admin: user.admin,
-        username: user.username,
-      };
-      const token = jwt.sign(userData, process.env.SECRET_TOKEN, {
-        expiresIn: 60 * 60 * 60,
+
+      const token = jwt.sign({id:user._id}, process.env.SECRET_TOKEN, {
+        expiresIn: "48h",
       });
 
       return res.status(201).json({ token });
